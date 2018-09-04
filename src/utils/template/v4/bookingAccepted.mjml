@@ -1,0 +1,146 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .link-center {
+        color: #06C953;
+        text-decoration: none;
+      }
+      .star {
+        height: 15px;
+        width: 15px;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f2f2f2">
+    <mj-wrapper padding="0">
+      <!---Head Section-->
+      <mj-section background-color="#ffffff">
+        <mj-column width="100%">
+          <mj-table width="100%" color="#BFBFBF" font-size="34px" font-weight="900" line-height="41px">
+            <tr>
+              <th align="left">
+                BookingBravo
+              </th>
+            </tr>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+      <!--Booked Section -->
+      <mj-section background-color="#ffffff">
+        <mj-column width="100%">
+          <mj-table color="#303030" width="100%" font-size="24px" line-height="29px">
+            <tr>
+              <th align="left">
+                Hi, {{capitalize receiver.fullName}}
+              </th>
+            </tr>
+            <tr>
+              <td style="font-size: 18px; line-height: 22px; padding-top: 20px">
+                Your offer about Accepted
+              </td>
+            </tr>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+      <!--Main Section-->
+      <mj-section background-color="#ffffff">
+        <mj-column width="100%">
+          <mj-table color="#303030" width="100%">
+            <tr>
+              <td rowspan="2" style="width: 100px">
+                <img align="left" height="80px" width="80px" alt="img" src="http://hanassets.nd.gov/images/product/test.png" />
+              </td>
+              <td style="color: #0A9A43; font-weight: bold; font-size: 18px; line-height: 22px;">
+                {{capitalize sender.fullName}}
+              </td>
+              <td style="width: 120px; line-height: 22px;">
+                {{#each (stars sender.review.rating)}}
+                  <img height="15px" width="15px" class="star" src="{{this}}"></img>
+                {{/each}}
+              </td>
+            </tr>
+            <tr style="font-size: 16px; line-height: 20px;">
+              <td>{{formatDate booking.modifiedOn 'hh:mm A, DD MMM YYYY'}}</td>
+              <td>{{sender.review.count}} reviews</td>
+            </tr>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#FFFFFF">
+        <mj-column width="100%">
+          <mj-divider border-color="#D8D8D8" border-width="1px" border-style="solid"></mj-divider>
+        </mj-column>
+      </mj-section>
+      <!--Date Section-->
+      <mj-section background-color="#FFFFFF" padding="0">
+        <mj-column width="100%">
+          <mj-text align="left" color="#0A9A43" font-size="18px" font-weight="600" line-height="22px">{{capitalize booking.eventType}}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#FFFFFF" padding-bottom="0">
+        <mj-column width="100%">
+          <mj-table width="100%">
+            <tr>
+              <td style="width: 35px; padding: 0;">
+                <img width="16px" height="16px" src="https://i.imgur.com/9xagzqR.png" alt="img" />
+              </td>
+              <td style="color: #302F31; font-size: 16px; line-height: 20xp;">
+                {{formatDate booking.createdOn 'hh:mm A, DD MMM YYYY'}} - {{formatDate booking.createdOn 'hh:mm A, DD MMM YYYY'}}
+              </td>
+            </tr>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#FFFFFF" padding="0">
+        <mj-column width="100%">
+          <mj-button href="https://bookingbravo.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Accepted Booking</mj-button>
+        </mj-column>
+      </mj-section>
+      <!--FAQ Section-->
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-text font-weight="800" color="#292525" font-size="16px" line-height="20px">Frequently Asked Questions</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How can I be a considerate guest?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How do I make changes to a confirmed reservation as a guest?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How does check-in work?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How do I report something's wrong when I check in?</mj-text>
+          <mj-text padding-top="0px">Find more answers in our <a href="#" class="link-center">Help Center</a></mj-text>
+        </mj-column>
+      </mj-section>
+      <!--Footer-->
+      <mj-section background-color="#ffffff">
+        <mj-column border-right="1px solid" width="100px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Sign In</mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid" width="105px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Support</mj-text>
+        </mj-column>
+        <mj-column width="135px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Check Status</mj-text>
+        </mj-column>
+      </mj-section>
+      <!--Social-Section-->
+      <mj-section>
+        <mj-group width="37%">
+          <mj-column padding-left="0px">
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/WBVlApM.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/JF08cov.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://imgur.com/ZIWT8bt.png"></mj-image>
+          </mj-column>
+        </mj-group>
+        <mj-group width="63%">
+          <mj-column>
+            <mj-image href="#" align="right" padding="0px" padding-left="10px" height="50px" width="130px" src="https://i.imgur.com/HTBBIb5.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" align="left" padding="0px" padding-right="10px" height="50px" width="130px" src="https://i.imgur.com/zevaTVl.png"></mj-image>
+          </mj-column>
+        </mj-group>
+      </mj-section>
+    </mj-wrapper>
+  </mj-tbody>
+</mjml>

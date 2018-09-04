@@ -1,0 +1,31 @@
+<mjml>
+  <mj-body>
+    <mj-container>
+      <mj-section background-color="white" border-radius:"3px">
+        <mj-column>
+
+          <mj-image width="300" src="https://gallery.mailchimp.com/ded188770c8c5dbadba6a2d1b/images/d44ffaab-928f-4cbe-a25d-40540dd92e8e.png"></mj-image>
+          <mj-spacer height="30px" />
+          <mj-text font-size="17px" font-weight="100" color="gray" font-family="helvetica">Hi!</mj-text>
+
+          <mj-text font-size="16px" font-weight="100" color="gray" font-family="helvetica">I am inviting you to join to <b>Google team</b> on Workep, the project management platform for Google Apps to collaborate together. </mj-text>
+          <mj-spacer height="15px" />
+          <mj-button href="#" font-family="Helvetica" background-color="#00b7f9" color="white" style="box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;">
+            JOIN TO GOOGLE TEAM
+          </mj-button>
+
+          <mj-spacer height="15px" />
+          <mj-text font-size="15px" font-weight="100" color="silver" font-family="helvetica" line-height="10px">
+          Greetings,
+          The Workep Team!
+          </mj-text>
+          <mj-text font-size="15px" font-weight="100" color="silver" font-family="helvetica" line-height="10px">
+          © 2016 Workep Inc
+          11930 North Bayshore
+          Miami, FL 33181 (EE. UU.)</mj-text>
+
+        </mj-column>
+      </mj-section>
+    </mj-container>
+  </mj-body>
+</mjml>

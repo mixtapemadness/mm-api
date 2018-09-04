@@ -1,0 +1,105 @@
+<mjml>
+    <mj-head>
+        <mj-style inline="inline">
+        .text-green {
+            color: #06C953;
+            font-size: 18px;
+            line-height: 22px;
+            text-decoration: none
+        }
+        </mj-style>
+        <mj-style inline="inline">
+        
+        </mj-style>
+    </mj-head>
+    <mj-body>
+        <mj-container background-color="#f2f2f2">
+            <!---Head Section-->
+            <mj-section background-color="#ffffff">
+                <mj-column>
+                    <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34" line-height="41px">BookingBravo</mj-text>
+                </mj-column>
+            </mj-section>
+            <!---->
+            <mj-section background-color="#ffffff">
+                <mj-column>
+                    <mj-text color="#303030" font-weight="bold" font-size="24px" line-height="29px">Hi Jack</mj-text>
+                    <mj-text color="#3E3F3B" font-weight="bold" font-size="18px" line-height="22px">You have unread message about <a class="text-green" href="#">{{Request Name}}</a></mj-text>
+                </mj-column>
+            </mj-section>
+            <!--Main Section-->
+            <mj-section background-color="#ffffff">
+                <mj-group width="60%">
+                    <mj-column padding="0" width="40%">
+                        <mj-image padding-right="0"align="left" height="77.65px" width="79.3px" alt="img"></mj-image>
+                    </mj-column>
+                    <mj-column padding="0" width="60%">
+                        <mj-text align="left" padding-left="0" padding-top="19px" color="#0A9A43" font-size="18px" font-weight="600" line-height="22px">Ted Rogers</mj-text>
+                        <mj-text align="left" padding-left="0" padding-top="0" color="#302F31" font-size="16px" line-height="20px">7:36 PM , 20 Mar 2018</mj-text>
+                    </mj-column>
+                </mj-group>
+                <mj-column width="40%">
+                </mj-column>
+                <mj-column width="100%">
+                    <mj-divider border-color="#D8D8D8" border-width="1px" border-style="solid"></mj-divider>
+                </mj-column>
+            </mj-section>
+            <!--Text Section-->
+            <mj-section padding-top="0" background-color="#ffffff">
+                <mj-column>
+                    <mj-text padding-top="0" color="#3E3F3B" font-size="16px" line-height="20px">Ok, good luck, if you ll need an apartment, don t hesitate, tell me what price you can pay and I help you. </mj-text>
+                    <mj-text color="#203245" font-size="16px" line-height="20px">Regards, Ted Rogers</mj-text>
+                </mj-column>
+            </mj-section>
+            <!--Btn-Section-->
+            <mj-section background-color="#ffffff">
+                <mj-column width="30%">
+                    <mj-button href="#" align="left" padding-left="25px" href="#" background-color="#06C953" width="110px" height="46px" color="#FFFFFF" font-size="16px" line-height="20px">Reply</mj-button>
+                </mj-column>
+                <mj-column width="70%">
+                    <mj-button href ="#" align="left" padding-left="25px" background-color="none" color="#00CB49" border="1px solid #00CB49" width="187px" height="46px">View Your Request</mj-button>
+                </mj-column>
+            </mj-section>
+            <!---->
+            <mj-section background-color="#ffffff">
+                <mj-column>
+                    <mj-text color="#203245" font-size="16px" line-height="20px">Cheers, <br /> Bookingbravo Team</mj-text>
+                </mj-column>
+            </mj-section>
+            <!--footer-->
+            <mj-section background-color="#ffffff">
+                 <mj-column border-right="1px solid" width="100px">
+                    <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Sign In</mj-text>
+                </mj-column>
+                <mj-column border-right="1px solid" width="105px">
+                    <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Support</mj-text>
+                </mj-column>
+                <mj-column width="135px">
+                    <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Check Status</mj-text>
+                </mj-column>
+            </mj-section>
+            <!--Social-->
+            <mj-section >
+                <mj-group width="37%">
+                    <mj-column padding-left="0px">
+                        <mj-image href="#" height="16.59px" width="16.59" src="https://i.imgur.com/WBVlApM.png"></mj-image>    
+                    </mj-column>
+                    <mj-column>
+                        <mj-image href="#" height="16.59px" width="16.59" src="https://i.imgur.com/JF08cov.png"></mj-image>
+                    </mj-column>
+                    <mj-column>
+                        <mj-image href="#" height="16.59px" width="16.59" src="https://imgur.com/ZIWT8bt.png"></mj-image>
+                    </mj-column>
+                </mj-group>
+                <mj-group width="63%">
+                    <mj-column>
+                        <mj-image href="#" align="right" padding="0px" padding-left="10px" height="50px" width="130px" src="https://i.imgur.com/HTBBIb5.png"></mj-image>
+                    </mj-column>
+                    <mj-column>
+                        <mj-image href="#" align="left" padding="0px" padding-right="10px" height="50px" width="130px" src="https://i.imgur.com/zevaTVl.png"></mj-image>
+                    </mj-column>
+                </mj-group>
+            </mj-section>
+        </mj-container>
+    </mj-body>
+</mjml>

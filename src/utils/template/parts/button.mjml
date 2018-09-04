@@ -1,0 +1,3 @@
+<mj-column width="100%">
+  <mj-button href="https://bookingbravo.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Accepted Booking</mj-button>
+</mj-column>

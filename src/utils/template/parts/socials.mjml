@@ -1,0 +1,11 @@
+<mj-group width="37%">
+  <mj-column padding-left="0px">
+    <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/WBVlApM.png"></mj-image>
+  </mj-column>
+  <mj-column>
+    <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/JF08cov.png"></mj-image>
+  </mj-column>
+  <mj-column>
+    <mj-image href="#" height="16.59px" width="16.59px" src="https://imgur.com/ZIWT8bt.png"></mj-image>
+  </mj-column>
+</mj-group>

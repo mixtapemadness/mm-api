@@ -1,0 +1,51 @@
+<mjml>
+  <mj-body background-color = "#f2f2f2">
+    <mj-wrapper padding="0">
+
+      <!--Head Section-->
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-text align="center" color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">BookingBravo</mj-text>
+        </mj-column>
+      </mj-section>
+
+      <!--Main-->
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-image src="./Assets/creditcard.svg"></mj-image>
+          <mj-text align="center" color="#292525" font-size="16px" line-height="20px" font-weight="800">Empty Template</mj-text>
+          <mj-text align="center" padding-top="0px" color="red" font-size="16px" line-height="20px" font-weight="800">For testing purposes only</mj-text>
+          <mj-text align="center" padding-top="0" color="#BFBFBF" font-size="13px">Below is the listed data you passed to this template</mj-text>
+          <mj-table cellpadding="5px">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#each this._doc}}
+              <tr>
+                <td>{{@key}}</td>
+                <td>{{this}}</td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </mj-table>
+        </mj-column>
+      </mj-section>
+
+      <!--Social Section-->
+      <mj-section>
+        <mj-group width="50%">
+          <mj-column>
+            <mj-image href="#" padding="0px" padding-left="10px" height="50px" width="130px" src="https://i.imgur.com/HTBBIb5.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" padding="0px" padding-right="10px" height="50px" width="130px" src="https://i.imgur.com/zevaTVl.png"></mj-image>
+          </mj-column>
+        </mj-group>
+      </mj-section>
+    </mj-wrapper>
+  <mj-body>
+</mjml>

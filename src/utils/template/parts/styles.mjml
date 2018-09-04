@@ -1,0 +1,10 @@
+<mj-style>
+  .link-center {
+    color: #06C953;
+    text-decoration: none;
+  }
+  .star {
+    height: 15px;
+    width: 15px;
+  }
+</mj-style>

@@ -1,0 +1,30 @@
+{
+  "apps": [
+    {
+      "name"        : "mixtape-backend-development",
+      "script"      : "./bin/www",
+      "watch"       : true,
+      "merge_logs"  : true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "NODE_ENV" : "development"
+      },
+      "args": ["DEBUG=*"],
+      "ignore_watch": [".vscode", ".gitignore", ".eslintrc.js", "node_modules"],
+      "source_map_support": true
+    },
+    {
+      "name"        : "mixtape-backend-testing",
+      "script"      : "./bin/www",
+      "watch"       : true,
+      "merge_logs"  : true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "env": {
+        "NODE_ENV" : "testing"
+      },
+      "args": ["DEBUG=*"],
+      "ignore_watch": [".vscode", ".gitignore", ".eslintrc.js", "node_modules"],
+      "source_map_support": true
+    }
+  ]
+}

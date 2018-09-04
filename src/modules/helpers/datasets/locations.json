@@ -1,0 +1,12 @@
+[
+    { "title" : "Front" },
+    { "title" : "Back" },
+    { "title" : "North" },
+    { "title" : "Northeast" },
+    { "title" : "East" },
+    { "title" : "Southeast" },
+    { "title" : "South" },
+    { "title" : "Southwest" },
+    { "title" : "West" },
+    { "title" : "Northwest" }
+]

@@ -1,0 +1,14 @@
+<mj-group width="40%">
+  <mj-column width="60%">
+    <mj-text align="right" padding="10px 10px 10px 10px">
+      <div inline="inline">
+        {{#each (stars sender.review.rating)}}
+          <img height="15px" width="15px" class="star" src="{{this}}"></img>
+        {{/each}}
+      </div>
+    </mj-text>
+  </mj-column>
+  <mj-column width="40%">
+    <mj-text padding="0" padding-top="9px" color="#4A4A4A" font-size="14px" line-height="18px">{{sender.review.count}} reviews</mj-text>
+  </mj-column>
+</mj-group>

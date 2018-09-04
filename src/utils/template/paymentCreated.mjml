@@ -1,0 +1,106 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .link-center{ color: #06C953; text-decoration: none; }
+      .star{ height: 15px; width: 15px; }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f2f2f2">
+    <mj-wrapper padding="0">
+      <mj-raw>
+        <!-- -Head Section -->
+      </mj-raw>
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">BookingBravo</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- Booked Section -->
+      </mj-raw>
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-text color="#303030" font-weight="bold" font-size="24px" line-height="29px">Hi, {{capitalize receiver.fullName}}</mj-text>
+          <mj-text color="#303030" font-size="18px" line-height="22px">You received new payment</mj-text>
+          <mj-text color="#303030" font-size="18px" line-height="1px">Amount: {{payment.amount}}</mj-text>
+          <mj-text color="#303030" font-size="18px" line-height="5px">Balance: {{remaninig}}</mj-text>
+          <mj-text color="#303030" font-size="18px" line-height="5px">Total: {{booking.fee}}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- Main Section -->
+      </mj-raw>
+      <mj-section background-color="#ffffff">
+        <mj-column padding="0px">
+          <mj-image padding-right="0px" align="left" height="77.65px" width="79.3px" alt="img" src="{{{avatarUrl sender.avatar}}}"></mj-image>
+        </mj-column>
+        <mj-column padding="0px" width="60%">
+          <mj-text align="left" padding-left="0px" padding-top="19px" color="#0A9A43" font-size="18px" font-weight="600" line-height="22px">{{capitalize sender.fullName}}</mj-text>
+          <mj-text align="left" padding-left="0px" padding-top="0" color="#302F31" font-size="16px" line-height="20px">{{formatDate booking.createdOn 'hh:mm A, DD MMM YYYY'}}</mj-text>
+        </mj-column>
+        <mj-column width="100%">
+          <mj-divider border-color="#D8D8D8" border-width="1px" border-style="solid"></mj-divider>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- Date Section -->
+      </mj-raw>
+      <mj-section background-color="#FFFFFF">
+        <mj-column width="100%">
+          <mj-button href="{{{frontUrl 'financials'}}}" align="left" background-color="#06C953" height="46px" width="195px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">Check financials</mj-button>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- FAQ Section -->
+      </mj-raw>
+      <mj-section background-color="#ffffff">
+        <mj-column>
+          <mj-text font-weight="800" color="#292525" font-size="16px" line-height="20px">Frequently Asked Questions</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How can I be a considerate guest?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How do I make changes to a confirmed reservation as a guest?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How does check-in work?</mj-text>
+          <mj-text color="#06C953" padding-top="0px">How do I report something's wrong when I check in?</mj-text>
+          <mj-text padding-top="0px">Find more answers in our <a href="#" class="link-center">Help Center</a></mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- Footer -->
+      </mj-raw>
+      <mj-section background-color="#ffffff">
+        <mj-column border-right="1px solid" width="100px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Sign In</mj-text>
+        </mj-column>
+        <mj-column border-right="1px solid" width="105px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Support</mj-text>
+        </mj-column>
+        <mj-column width="135px">
+          <mj-text line-height="19px" font-size="14px" color="#06C953" align="center">Check Status</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-raw>
+        <!-- Social-Section -->
+      </mj-raw>
+      <mj-section>
+        <mj-group width="37%">
+          <mj-column padding-left="0px">
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/WBVlApM.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://i.imgur.com/JF08cov.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" height="16.59px" width="16.59px" src="https://imgur.com/ZIWT8bt.png"></mj-image>
+          </mj-column>
+        </mj-group>
+        <mj-group width="63%">
+          <mj-column>
+            <mj-image href="#" align="right" padding="0px" padding-left="10px" height="50px" width="130px" src="https://i.imgur.com/HTBBIb5.png"></mj-image>
+          </mj-column>
+          <mj-column>
+            <mj-image href="#" align="left" padding="0px" padding-right="10px" height="50px" width="130px" src="https://i.imgur.com/zevaTVl.png"></mj-image>
+          </mj-column>
+        </mj-group>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>

@@ -8,7 +8,7 @@ const Jobs = require('./jobs')
 
 const worker = new Agenda({
   // db: { address: config.database.connection } // getting error
-  db: { address: `mongodb://bookingbravo:${urlencode('V0bi!qwerty1$')}@db.vobi.io/booking` }
+  db: { address: `mongodb://mixtape:${urlencode('V0bi!qwerty1$')}@db.vobi.io/booking` }
 })
 
 const defineJob =

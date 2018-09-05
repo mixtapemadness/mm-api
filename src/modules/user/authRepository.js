@@ -48,7 +48,7 @@ class AuthRepository {
             templateName: 'SignUp',
             templateData: user,
             to: user.email,
-            from: 'no-reply@bookingbravo.com',
+            from: 'no-reply@mixtape.com',
             subject: 'Welcome to booking bravo'
           })
 
@@ -142,7 +142,7 @@ class AuthRepository {
           templateName: 'resetPassword',
           templateData: user,
           to: user.email,
-          from: 'no-reply@bookingbravo.com',
+          from: 'no-reply@mixtape.com',
           subject: 'Reset password'
         })
 
@@ -253,7 +253,7 @@ class AuthRepository {
       templateName: 'activationResend',
       templateData: user,
       to: user.email,
-      from: 'no-reply@bookingbravo.com',
+      from: 'no-reply@mixtape.com',
       subject: 'Email confirmation link from booking bravo'
     })
 

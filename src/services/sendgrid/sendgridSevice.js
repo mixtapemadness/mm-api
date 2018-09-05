@@ -19,7 +19,7 @@ const send = async ({
   templateName = 'empty',
   templateData = {},
   to,
-  from = 'no-reply@bookingbravo.com',
+  from = 'no-reply@mixtape.com',
   subject = 'New email from Booking Bravo'
 }) => {
   try {
@@ -41,7 +41,7 @@ const sendTenantCode = data =>
       sgMail
         .send({
           to: data.email,
-          from: 'no-reply@bookingbravo.com',
+          from: 'no-reply@mixtape.com',
           subject: 'Please Complete a imixtape of ' +
             `${data.address} for ${data.companyName}`,
           html
@@ -56,7 +56,7 @@ const sendWelcomeEmail = user =>
       sgMail
         .send({
           to: user.email,
-          from: 'no-reply@bookingbravo.com',
+          from: 'no-reply@mixtape.com',
           subject: 'Welcome to mixtape',
           html
         })
@@ -66,7 +66,7 @@ const sendPasswordResetEmail = user =>
   sgMail
     .send({
       to: user.email,
-      from: 'no-reply@bookingbravo.com',
+      from: 'no-reply@mixtape.com',
       subject: 'Reset password',
       text: 'mixtape reset password',
       html: 'To reset password click  ' +
@@ -84,7 +84,7 @@ const sendReminderEmail = data =>
       sgMail
         .send({
           to: data.email,
-          from: 'no-reply@bookingbravo.com',
+          from: 'no-reply@mixtape.com',
           subject: 'ACTION REQUIRED: Complete Your imixtape of ' +
             `${data.address} for ${data.companyName}`,
           html
@@ -100,7 +100,7 @@ const sendBookedEmail = user =>
       sgMail
         .send({
           to: user.email,
-          from: 'no-reply@bookingbravo.com',
+          from: 'no-reply@mixtape.com',
           subject: 'Booking request received',
           html
         })
@@ -115,7 +115,7 @@ const sendBookingModifiedEmail = user =>
         sgMail
           .send({
             to: user.email,
-            from: 'no-reply@bookingbravo.com',
+            from: 'no-reply@mixtape.com',
             subject: 'Review - Booking modified',
             html
           })
@@ -130,7 +130,7 @@ const sendBookingAcceptedEmail = user =>
         sgMail
           .send({
             to: user.email,
-            from: 'no-reply@bookingbravo.com',
+            from: 'no-reply@mixtape.com',
             subject: 'Booking request accepted',
             html
           })
@@ -145,7 +145,7 @@ const sendBookingRejectionEmail = user =>
         sgMail
           .send({
             to: user.email,
-            from: 'no-reply@bookingbravo.com',
+            from: 'no-reply@mixtape.com',
             subject: 'Booking request declined',
             html
           })
@@ -160,7 +160,7 @@ const sendInvitedEmail = user =>
         sgMail
           .send({
             to: user.email,
-            from: 'no-reply@bookingbravo.com',
+            from: 'no-reply@mixtape.com',
             subject: 'New Invitation Received',
             html
           })

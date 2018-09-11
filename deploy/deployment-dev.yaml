@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: mixtapeapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mixtapeapi
+  template:
+    metadata:
+      labels:
+        app: mixtapeapi
+    spec:
+      containers:
+      - name: mixtapeapi
+        image: gcr.io/vobi-216108/mixtapeapi:latest
+        ports:
+        - containerPort: 7070

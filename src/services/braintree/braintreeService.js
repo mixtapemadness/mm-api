@@ -2,7 +2,7 @@ const braintree = require('braintree')
 const config = require('app/config')
 
 class BraintreeService {
-  constructor ({ sandbox = true }) {
+  constructor({ sandbox = true }) {
     const conf = sandbox
       ? config.braintree.sandbox
       : config.braintree.production
@@ -17,7 +17,7 @@ class BraintreeService {
     })
   }
 
-  async createCustomer (data) {
+  async createCustomer(data) {
     try {
       return await this.gateway.customer.create(data)
     } catch (e) {
@@ -25,7 +25,7 @@ class BraintreeService {
     }
   }
 
-  async updateCustomer (customerId, data) {
+  async updateCustomer(customerId, data) {
     try {
       return await this.gateway.customer.update(customerId, data)
     } catch (e) {
@@ -33,7 +33,7 @@ class BraintreeService {
     }
   }
 
-  async deleteCustomer (customerId) {
+  async deleteCustomer(customerId) {
     try {
       return await this.gateway.customer.delete(customerId)
     } catch (e) {
@@ -41,7 +41,7 @@ class BraintreeService {
     }
   }
 
-  async findCustomer (customerId) {
+  async findCustomer(customerId) {
     try {
       return await this.gateway.customer.find(customerId)
     } catch (e) {
@@ -49,7 +49,7 @@ class BraintreeService {
     }
   }
 
-  async createPaymentMethod (customerId, paymentMethodNonce) {
+  async createPaymentMethod(customerId, paymentMethodNonce) {
     try {
       return await this.gateway.paymentMethod.create({ customerId, paymentMethodNonce })
     } catch (e) {
@@ -57,7 +57,7 @@ class BraintreeService {
     }
   }
 
-  async deletePaymentMethod (paymentMethodToken) {
+  async deletePaymentMethod(paymentMethodToken) {
     try {
       return await this.gateway.paymentMethod.delete(paymentMethodToken)
     } catch (e) {
@@ -65,7 +65,7 @@ class BraintreeService {
     }
   }
 
-  async createTransaction (data) {
+  async createTransaction(data) {
     try {
       return await this.gateway.transaction.sale(data)
     } catch (e) {
@@ -73,7 +73,7 @@ class BraintreeService {
     }
   }
 
-  async settleTransaction (transactionId) {
+  async settleTransaction(transactionId) {
     try {
       return await this.gateway.transaction.submitForSettlement(transactionId)
     } catch (e) {
@@ -81,7 +81,7 @@ class BraintreeService {
     }
   }
 
-  async refundTransaction (transactionId) {
+  async refundTransaction(transactionId) {
     try {
       return await this.gateway.transaction.refund(transactionId)
     } catch (e) {
@@ -89,7 +89,7 @@ class BraintreeService {
     }
   }
 
-  async createSubscription (planId, paymentMethodToken) {
+  async createSubscription(planId, paymentMethodToken) {
     try {
       return await this.gateway.subscription.create({ paymentMethodToken, planId })
     } catch (e) {
@@ -97,7 +97,7 @@ class BraintreeService {
     }
   }
 
-  async updateSubscription (subscriptionId, data) {
+  async updateSubscription(subscriptionId, data) {
     try {
       return await this.gateway.subscription.update(subscriptionId, data)
     } catch (e) {
@@ -105,7 +105,7 @@ class BraintreeService {
     }
   }
 
-  async cancelSubscription (subscriptionId) {
+  async cancelSubscription(subscriptionId) {
     try {
       return await this.gateway.subscription.cancel(subscriptionId)
     } catch (e) {
@@ -113,7 +113,7 @@ class BraintreeService {
     }
   }
 
-  async generateClientToken (customerId) {
+  async generateClientToken(customerId) {
     try {
       const response = await this.gateway.clientToken.generate({ customerId })
       return response.clientToken

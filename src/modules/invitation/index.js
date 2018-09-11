@@ -1,6 +1,6 @@
 const getNotificationRepository = (db) => {
   var NotificationRepository = require('../notification/notificationRepository')
-  return new NotificationRepository({db})
+  return new NotificationRepository({ db })
 }
 
 const getInvitationRepository = (db) => {
@@ -28,3 +28,4 @@ module.exports = {
     db.InvitationModel = require('./invitationModel')(mongoose)
   }
 }
+

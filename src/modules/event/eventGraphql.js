@@ -8,8 +8,8 @@ const {
   addOneToOneRelation
 } = require('../core/graphql')
 
-module.exports = ({EventModel, isAuthenticated, TC, repo}) => {
-  const {schemaComposer, UserTC} = TC
+module.exports = ({ EventModel, isAuthenticated, TC, repo }) => {
+  const { schemaComposer, UserTC } = TC
   const EventTC = composeWithMongoose(EventModel, customizationOptions)
 
   addOneToOneRelation({

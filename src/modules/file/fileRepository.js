@@ -12,11 +12,11 @@ const gm = require('gm')
 mkdirp.sync(config.upload.dir)
 
 class FileRepository {
-  constructor ({ db }) {
+  constructor({ db }) {
     this.db = db
   }
 
-  upload ({ user, files }) {
+  upload({ user, files }) {
     return mapAsync(
       files,
       fileUpload =>
@@ -35,7 +35,7 @@ class FileRepository {
     )
   }
 
-  uploadFile ({ userId, stream, filename: original, mimetype, encoding }) {
+  uploadFile({ userId, stream, filename: original, mimetype, encoding }) {
     const { FileModel } = this.db
 
     const ext = path.parse(original).ext
@@ -69,7 +69,7 @@ class FileRepository {
       )
   }
 
-  storeFile ({ stream, filepath, original }) {
+  storeFile({ stream, filepath, original }) {
     return new Promise((resolve, reject) =>
       stream
         .on('error', error => {
@@ -85,7 +85,7 @@ class FileRepository {
     )
   }
 
-  async removeFile ({ filename }) {
+  async removeFile({ filename }) {
     const fileRecord = await this.db.FileModel.findOneAndRemove({ filename })
 
     if (fileRecord) {

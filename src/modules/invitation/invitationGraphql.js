@@ -13,18 +13,10 @@ const {
   promiseToPreResolver
 } = require('../core/graphql')
 
-module.exports = ({
-  InvitationModel,
-  TC,
-  InvitationRepository
-}) => {
+module.exports = ({ InvitationModel, TC, InvitationRepository }) => {
   const { schemaComposer, UserTC } = TC
 
-  const {
-    queries: crudQueries,
-    mutations: crudMutations,
-    ModelTC: InvitationTC
-  } = prepareCrudModel({
+  const { queries: crudQueries, mutations: crudMutations, ModelTC: InvitationTC } = prepareCrudModel({
     Model: InvitationModel
   })
 

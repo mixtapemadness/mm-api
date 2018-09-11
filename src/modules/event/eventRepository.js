@@ -7,20 +7,20 @@
 // var config = require('app/config')
 
 class eventRepository {
-  constructor ({ db, fileRepository }) {
+  constructor({ db, fileRepository }) {
     this.db = db
     this.fileRepository = fileRepository
   }
 
-  createEvent () {
+  createEvent() {
 
   }
 
-  updateEvent () {
+  updateEvent() {
 
   }
 
-  async removeFilesOfEvent ({ _id }) {
+  async removeFilesOfEvent({ _id }) {
     const event = await this.db.EventModel.findOne({ _id })
 
     if (event && event.urls) {
@@ -28,17 +28,18 @@ class eventRepository {
     }
   }
 
-  async getEvents (args, user) {
+  async getEvents(args, user) {
     const pick = require('lodash/pick')
 
     const preparedArgs = pick(args, ['type'])
 
     if (args.users && args.users.length) {
-      preparedArgs.user = { $in: [
-        ...args.users
-      ]}
+      preparedArgs.user = {
+        $in: [
+          ...args.users
+        ]
+      }
     }
-
     return await global.db.EventModel.find(preparedArgs)
   }
 }

@@ -5,28 +5,28 @@ module.exports = (mongoose) => {
   let Schema = mongoose.Schema
 
   let eventSchema = new Schema({
-    title: {type: String},
-    text: {type: String},
-    type: {type: String, enum: typeList},
-    category: {type: String, enum: categoryList},
+    title: { type: String },
+    text: { type: String },
+    type: { type: String, enum: typeList },
+    category: { type: String, enum: categoryList },
     urls: [{
-      type: {type: String, enum: ['video', 'photo']},
-      url: {type: String},
-      mainCover: {type: Boolean, default: false}
+      type: { type: String, enum: ['video', 'photo'] },
+      url: { type: String },
+      mainCover: { type: Boolean, default: false }
     }],
-    isHighlighted: {type: Boolean, default: false},
-    startDate: {type: Date},
-    endDate: {type: Date},
+    isHighlighted: { type: Boolean, default: false },
+    startDate: { type: Date },
+    endDate: { type: Date },
     video: {
-      url: {type: String}
+      url: { type: String }
     },
-    location: {type: String},
-    date: {type: Date, description: 'Event date'},
-    user: {type: Schema.Types.ObjectId, ref: 'User', description: 'Event creator', index: true},
-    modifierUser: {type: Schema.Types.ObjectId, ref: 'User'},
+    location: { type: String },
+    date: { type: Date, description: 'Event date' },
+    user: { type: Schema.Types.ObjectId, ref: 'User', description: 'Event creator', index: true },
+    modifierUser: { type: Schema.Types.ObjectId, ref: 'User' },
     status: { type: String, default: 'active', required: true, index: 1 },
-    created: {type: Date, default: Date.now, index: true},
-    modified: {type: Date}
+    created: { type: Date, default: Date.now, index: true },
+    modified: { type: Date }
   }, {})
 
   eventSchema.pre('save', (next) => {
@@ -41,12 +41,12 @@ module.exports = (mongoose) => {
         _id: { $ne: doc._id },
         user: doc.user
       }, {
-        $set: { isHighlighted: false }
-      }).exec()
+          $set: { isHighlighted: false }
+        }).exec()
     }
   })
 
-  eventSchema.methods.toJSON = function() {
+  eventSchema.methods.toJSON = function () {
     var obj = this.toObject()
     delete obj.__v
     delete obj._id

@@ -4,13 +4,13 @@
 const uniq = require('lodash/uniq')
 
 class BookingRepository {
-  constructor ({ db, notificationRepository }) {
+  constructor({ db, notificationRepository }) {
     this.db = db
     this.notificationRepository = notificationRepository
     this.mailService = require('../../services/sendgrid/sendgridSevice')
   }
 
-  async isTalent ({ record }, user) {
+  async isTalent({ record }, user) {
     try {
       const booking = await this.db.BookingModel.findOne({ _id: record._id })
       if (!booking) {
@@ -22,7 +22,7 @@ class BookingRepository {
     }
   }
 
-  async initializeChat (payload) {
+  async initializeChat(payload) {
     try {
       const { record } = payload
       const conversation = []
@@ -49,7 +49,7 @@ class BookingRepository {
     }
   }
 
-  async getBookingsByUsers (args, user) {
+  async getBookingsByUsers(args, user) {
     var preparedArgs = {}
 
     if (args.users && args.users.length) {
@@ -72,12 +72,12 @@ class BookingRepository {
     return await global.db.BookingModel.find(preparedArgs)
   }
 
-  async getChatId ({ _id }) {
+  async getChatId({ _id }) {
     const chat = await this.db.ChatModel.findOne({ bookingId: _id }, '_id')
     return chat._id
   }
 
-  async getFeePaid ({ _id }) {
+  async getFeePaid({ _id }) {
     // const Payments = await this.db.PaymentModel.find({ bookingId: _id, status: 'COMPLETED' }, 'amount')
     const Payments = await this.db.PaymentModel.find({ bookingId: _id }, 'amount')
     let sum = 0
@@ -87,7 +87,7 @@ class BookingRepository {
     return sum
   }
 
-  async getFeeRemained ({ _id }) {
+  async getFeeRemained({ _id }) {
     const booking = await this.db.BookingModel.findOne({ _id }, 'fee')
     // const Payments = await this.db.PaymentModel.find({ bookingId: _id, status: 'COMPLETED' }, 'amount')
     const Payments = await this.db.PaymentModel.find({ bookingId: _id }, 'amount')
@@ -98,7 +98,7 @@ class BookingRepository {
     return booking.fee - sum
   }
 
-  async isDateRangeValid ({ start, end, talentId }) {
+  async isDateRangeValid({ start, end, talentId }) {
     if (start > end) {
       return false
     }
@@ -140,11 +140,11 @@ class BookingRepository {
     return true
   }
 
-  isUserBlocked (talentId, userId) {
+  isUserBlocked(talentId, userId) {
     return this.db.UserModel.count({ _id: talentId, blockedUsers: userId })
   }
 
-  async guessRole (booking, user) {
+  async guessRole(booking, user) {
     try {
       let role = ''
 
@@ -171,7 +171,7 @@ class BookingRepository {
     }
   }
 
-  async changeStatus ({ record: { _id, status } }) {
+  async changeStatus({ record: { _id, status } }) {
     try {
       const booking = await this.db.BookingModel.findOne({ _id })
       booking.status = status
@@ -181,7 +181,7 @@ class BookingRepository {
     }
   }
 
-  async ensureCreatePermissions ({ record, user }) {
+  async ensureCreatePermissions({ record, user }) {
     try {
       if (String(record.talentId) === String(user._id)) {
         throw new Error('You can not book yourself')
@@ -207,7 +207,7 @@ class BookingRepository {
     }
   }
 
-  async ensureUpdatePermissions ({ record, user }) {
+  async ensureUpdatePermissions({ record, user }) {
     try {
       const booking = await this.db.BookingModel.findOne({ _id: record._id })
       if (!booking) {
@@ -223,7 +223,7 @@ class BookingRepository {
     }
   }
 
-  async ensureChangeStatusPermissions ({ record: { _id, status }, user }) {
+  async ensureChangeStatusPermissions({ record: { _id, status }, user }) {
     try {
       const booking = await this.db.BookingModel.findOne({ _id })
       if (!booking) {
@@ -286,7 +286,7 @@ class BookingRepository {
     }
   }
 
-  async notifyFriends (record, user, options) {
+  async notifyFriends(record, user, options) {
     try {
       const friends = await this.db.InvitationModel.find({
         status: 'accepted',
@@ -298,8 +298,8 @@ class BookingRepository {
 
       const friendIds = uniq(friends.map(
         f => String(f.creator) === String(record.bookerId) ||
-              String(f.creator) === String(record.talentId)
-        ? String(f.receiverId) : String(f.creator)
+          String(f.creator) === String(record.talentId)
+          ? String(f.receiverId) : String(f.creator)
       )).filter(_id => _id !== String(record.bookerId) && _id !== String(record.talentId))
 
       friendIds.forEach(_id => {
@@ -319,7 +319,7 @@ class BookingRepository {
     }
   }
 
-  async notifyOnCreate (payload, user) {
+  async notifyOnCreate(payload, user) {
     try {
       const { record } = payload
 
@@ -347,7 +347,7 @@ class BookingRepository {
     }
   }
 
-  async notifyOnStatusChange (record, user) {
+  async notifyOnStatusChange(record, user) {
     try {
       const options = {
         modelName: 'Booking'
@@ -407,7 +407,7 @@ class BookingRepository {
     }
   }
 
-  async emailOnCreate ({ record }, user) {
+  async emailOnCreate({ record }, user) {
     try {
       const talent = await this.db.UserModel.findOne({ _id: record.talentId })
       return await this.mailService.send({
@@ -426,7 +426,7 @@ class BookingRepository {
     }
   }
 
-  async emailOnStatusChange (record, user) {
+  async emailOnStatusChange(record, user) {
     try {
       const _id = String(user._id) === String(record.bookerId)
         ? record.talentId : record.bookerId

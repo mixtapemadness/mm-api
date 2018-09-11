@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', req.headers.origin)
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
   res.header('Access-Control-Allow-Headers',
-        'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, authorization')
+    'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, authorization')
   if (req.method === 'OPTIONS') {
     res.sendStatus(200)
   } else {
@@ -23,8 +23,8 @@ app.use((req, res, next) => {
 
 app.set('superSecret', 'this$isThisfuckingsecret%^now')
 app.use(requestIp.mw())
-app.use(bodyParser.json({limit: '10mb'}))
-app.use(bodyParser.urlencoded({limit: '10mb', extended: false}))
+app.use(bodyParser.json({ limit: '10mb' }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/app/views'))
@@ -41,7 +41,7 @@ app.use('/static/events-photos', express.static(path.join(__dirname, 'src/public
 app.set('configuration', require('app/config'))
 
 // extend app for route object mapping
-app.map = function(a, route) {
+app.map = function (a, route) {
   route = route || ''
   for (var key in a) {
     if (Array.isArray(a[key])) {

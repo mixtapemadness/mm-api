@@ -2,7 +2,7 @@
 
 const getNotificationRepository = (db) => {
   var NotificationRepository = require('../notification/notificationRepository')
-  return new NotificationRepository({db})
+  return new NotificationRepository({ db })
 }
 
 const getRepository = (db) => {
@@ -26,7 +26,7 @@ const getGraphql = ({ db, TC }) => {
 
 const getCtrl = (db) => {
   var BookingController = require('./bookingController')
-  return new BookingController({db, bookingRepository: getRepository(db)})
+  return new BookingController({ db, bookingRepository: getRepository(db) })
 }
 
 const getRouteV1 = (db) => {
@@ -42,3 +42,4 @@ module.exports = {
     db.BookingModel = require('./bookingModel')(mongoose)
   }
 }
+

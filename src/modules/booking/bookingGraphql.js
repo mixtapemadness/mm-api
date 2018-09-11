@@ -48,6 +48,7 @@ module.exports = ({ BookingModel, bookingRepository, TC }) => {
     name: 'talent',
     relPropName: 'talentId'
   })
+
   addOneToOneRelation({
     ModelTC: BookingTC,
     RelationTC: UserTC,
@@ -190,7 +191,6 @@ module.exports = ({ BookingModel, bookingRepository, TC }) => {
           if (!rp.args.filter) {
             rp.args.filter = {}
           }
-
           return next(rp)
         }),
         bookingCountByAll: BookingTC.getResolver('count').wrapResolve(next => rp => {

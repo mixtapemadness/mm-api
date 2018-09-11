@@ -4,7 +4,7 @@
   "description": "mixtape-Back",
   "main": "bin/www",
   "scripts": {
-    "start": "NODE_ENV=development DEBUG=mixtape CONFIG=development nodemon ./bin/www",
+    "start": "cross-env NODE_ENV=development DEBUG=mixtape CONFIG=development nodemon ./bin/www",
     "start:testing": "DEBUG=* CONFIG=testing nodemon ./bin/www",
     "pm2_test": "NODE_ENV=testing DEBUG=* CONFIG=testing pm2 start ./bin/www --name mixtape_8001",
     "pm2_prod": "NODE_ENV=production CONFIG=production pm2 start ./bin/www --name mixtape_8001",
@@ -37,7 +37,7 @@
     "@sendgrid/mail": "^6.1.4",
     "agenda": "2.0.1",
     "apollo-upload-server": "5.0.0",
-    "axios": "0.18.0",
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "~1.13.2",
@@ -95,11 +95,13 @@
     "uuid": "^3.0.1",
     "winston": "^2.3.1",
     "wkhtmltopdf": "0.3.4",
+    "wpapi": "^1.1.2",
     "xls-to-json": "^0.4.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^3.15.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.1",

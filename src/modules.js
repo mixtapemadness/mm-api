@@ -1,7 +1,9 @@
 const debug = require('debug')('mixtape')
 const { apolloUploadExpress } = require('apollo-upload-server')
+var WPAPI = require('wpapi')
 
 module.exports = (app) => {
+  const wp = new WPAPI({ endpoint: 'http://www.mixtapemadness.com/blog/wp-json' })
   require('./utils/responses').forEach((response) => {
     app.use(response)
   })
@@ -33,31 +35,35 @@ module.exports = (app) => {
 
   const controllers = [
     'user',
-    'helpers',
+    // 'helpers',
     'booking',
-    'event',
-    'notification',
-    'chat',
-    'file',
-    'review',
-    'invitation',
-    'payment'
+    // 'event',
+    // 'notification',
+    // 'chat',
+    // 'file',
+    // 'review',
+    // 'invitation',
+    // 'payment',
+    'media',
+    // 'user',
+    'tag',
+    'category',
+    'post'
   ]
 
   const mongoose = require('./db')(app.get('configuration').database.connection, 'Main')
   global.db = { mongoose }
 
   const graphqlHTTP = require('express-graphql')
-  const { schemaComposer } = require('graphql-compose')
-  const TC = { schemaComposer }
+  const { schemaComposer, TypeComposer, InputTypeComposer, EnumTypeComposer } = require('graphql-compose')
+  const TC = { schemaComposer, TypeComposer, InputTypeComposer, EnumTypeComposer }
 
   // loop through all folders in api/controllers
   const modulesRoot = './modules/'
   controllers.forEach((ctrl) => {
     const mod = require(modulesRoot + ctrl)
     mod.initModel(global.db, mongoose)
-
-    mod.getGraphql({ db: global.db, TC })
+    mod.getGraphql({ db: global.db, TC, wp })
     app.map(mod.getRouteV1(global.db))
   })
 
@@ -133,3 +139,4 @@ module.exports = (app) => {
     console.log('disconnect socket server')
   })
 }
+

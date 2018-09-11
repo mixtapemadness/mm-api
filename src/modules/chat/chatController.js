@@ -4,7 +4,7 @@ const roles = require('../roles/roles').roles
 // var ChatRepo = require('./chatRepository')
 
 class ChatController {
-  constructor ({ db, chatRepository }) {
+  constructor({ db, chatRepository }) {
     this.db = db
     this.chatRepository = chatRepository
   }
@@ -21,7 +21,7 @@ class ChatController {
    * @apiUse defaultSuccessExample201
    * @apiUse Errors
   */
-  ping (req, res) {
+  ping(req, res) {
     res.ok('ping chat controller')
   }
 
@@ -45,31 +45,31 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  list (req, res) {
-    const { user: {id: userId} } = req
+  list(req, res) {
+    const { user: { id: userId } } = req
     const options = {
-      where: { $or: [{toUser: userId}, {fromUser: userId}] },
+      where: { $or: [{ toUser: userId }, { fromUser: userId }] },
       promise: true
     }
     global.db.ChatModel.httpGet(req, res, options)
 
-    // global.db.ChatModel.find({ $or: [{toUser: userId}, {fromUser: userId}] })
-    //     .populate('fromUser conversation.fromUser')
-        .then((data) => {
-          let result = {
-            items: [],
-            totalCount: data.totalCount
+      // global.db.ChatModel.find({ $or: [{toUser: userId}, {fromUser: userId}] })
+      //     .populate('fromUser conversation.fromUser')
+      .then((data) => {
+        let result = {
+          items: [],
+          totalCount: data.totalCount
+        }
+        data.items.map(mail => {
+          const conversation = mail.conversation.filter(item => item.deleted.indexOf(userId) < 0)
+          if (conversation && conversation.length) {
+            mail.conversation = conversation
+            result.items.push(mail)
           }
-          data.items.map(mail => {
-            const conversation = mail.conversation.filter(item => item.deleted.indexOf(userId) < 0)
-            if (conversation && conversation.length) {
-              mail.conversation = conversation
-              result.items.push(mail)
-            }
-          })
-          res.ok(result)
         })
-        .catch(res.catchError)
+        res.ok(result)
+      })
+      .catch(res.catchError)
   }
 
   /**
@@ -94,21 +94,21 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  send (req, res) {
-    const { user: { _id: userId}, params: {id}, body } = req
-    const {role} = req.user
+  send(req, res) {
+    const { user: { _id: userId }, params: { id }, body } = req
+    const { role } = req.user
 
     if ((role === roles.admin || role === roles.superAdmin)) {
       return this.chatRepository.sendMail(body.email, body, userId, role)
-                .then((data) => {
-                  return res.ok(data)
-                })
-                .catch((err) => {
-                  return res.badRequest(err.message)
-                })
+        .then((data) => {
+          return res.ok(data)
+        })
+        .catch((err) => {
+          return res.badRequest(err.message)
+        })
     } else {
       const query = {
-        role: {$in: [roles.superAdmin, roles.admin] }
+        role: { $in: [roles.superAdmin, roles.admin] }
       }
 
       global.db.UserModel.find(query)
@@ -116,8 +116,8 @@ class ChatController {
           let promises = []
           users.map(user => {
             promises.push(
-                    this.chatRepository.sendMail(user.email, body, userId, role)
-                )
+              this.chatRepository.sendMail(user.email, body, userId, role)
+            )
           })
           return Promise.all(promises).then((result) => {
             res.ok()
@@ -149,26 +149,26 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  view (req, res) {
-    const { user: {_id: userId}, params: {id} } = req
+  view(req, res) {
+    const { user: { _id: userId }, params: { id } } = req
     global.db.ChatModel.findById(id)
-    .then(mail => {
-      const index = mail.unread.indexOf(userId)
-      if (index > -1) {
-        mail.unread.splice(index, 1)
-      }
-      return mail.save()
-    })
-    .then(() => {
+      .then(mail => {
+        const index = mail.unread.indexOf(userId)
+        if (index > -1) {
+          mail.unread.splice(index, 1)
+        }
+        return mail.save()
+      })
+      .then(() => {
         // global.db.ChatModel.httpGet(req, res)
-      return global.db.ChatModel.findById(id).populate('toUser fromUser conversation.fromUser conversation.attachment')
-    })
-    .then((mail) => {
-      const conversation = mail.conversation.filter(item => item.deleted.indexOf(userId) < 0)
-      mail.conversation = conversation
-      res.ok(mail)
-    })
-    .catch(res.catchError)
+        return global.db.ChatModel.findById(id).populate('toUser fromUser conversation.fromUser conversation.attachment')
+      })
+      .then((mail) => {
+        const conversation = mail.conversation.filter(item => item.deleted.indexOf(userId) < 0)
+        mail.conversation = conversation
+        res.ok(mail)
+      })
+      .catch(res.catchError)
   }
 
   /**
@@ -191,21 +191,21 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  delete (req, res) {
-    const { user: {_id: userId}, params: {id} } = req
+  delete(req, res) {
+    const { user: { _id: userId }, params: { id } } = req
     global.db.ChatModel.findById(id)
-    .then(mail => {
-      mail.conversation.map(message => {
-        if (message.deleted.indexOf(userId) < 0) {
-          message.deleted.push(userId)
-        }
+      .then(mail => {
+        mail.conversation.map(message => {
+          if (message.deleted.indexOf(userId) < 0) {
+            message.deleted.push(userId)
+          }
+        })
+        return mail.save()
       })
-      return mail.save()
-    })
-    .then(() => {
-      global.db.ChatModel.httpGet(req, res)
-    })
-    .catch(res.catchError)
+      .then(() => {
+        global.db.ChatModel.httpGet(req, res)
+      })
+      .catch(res.catchError)
   }
 
   /**
@@ -228,21 +228,21 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  deleteMessage (req, res) {
-    const { user: { _id: userId}, params: {id}, body: {message: messageId} } = req
+  deleteMessage(req, res) {
+    const { user: { _id: userId }, params: { id }, body: { message: messageId } } = req
     global.db.ChatModel.findById(id)
-    .then(mail => {
-      mail.conversation.map(message => {
-        if (message._id == messageId && message.deleted.indexOf(userId) < 0) {
-          message.deleted.push(userId)
-        }
+      .then(mail => {
+        mail.conversation.map(message => {
+          if (message._id == messageId && message.deleted.indexOf(userId) < 0) {
+            message.deleted.push(userId)
+          }
+        })
+        return mail.save()
       })
-      return mail.save()
-    })
-    .then(() => {
-      global.db.ChatModel.httpGet(req, res)
-    })
-    .catch(res.catchError)
+      .then(() => {
+        global.db.ChatModel.httpGet(req, res)
+      })
+      .catch(res.catchError)
   }
 
   /**
@@ -266,13 +266,13 @@ class ChatController {
    *
    * @apiUse Errors
    */
-  reply (req, res) {
-    const { user: { _id: userId}, params: {id}, body } = req
+  reply(req, res) {
+    const { user: { _id: userId }, params: { id }, body } = req
 
-    return global.db.ChatModel.findOne({_id: id})
+    return global.db.ChatModel.findOne({ _id: id })
       .then(mail => {
         if (!mail) {
-          return res.notFound({message: 'Conversation not found!'})
+          return res.notFound({ message: 'Conversation not found!' })
         }
 
         if (!mail.conversation) {

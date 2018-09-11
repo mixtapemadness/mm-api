@@ -55,7 +55,12 @@ module.exports = (app) => {
   global.db = { mongoose }
 
   const graphqlHTTP = require('express-graphql')
-  const { schemaComposer, TypeComposer, InputTypeComposer, EnumTypeComposer } = require('graphql-compose')
+  const {
+    schemaComposer,
+    TypeComposer,
+    InputTypeComposer,
+    EnumTypeComposer
+  } = require('graphql-compose')
   const TC = { schemaComposer, TypeComposer, InputTypeComposer, EnumTypeComposer }
 
   // loop through all folders in api/controllers

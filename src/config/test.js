@@ -14,6 +14,6 @@ module.exports = {
   },
   systemEmail: 'service@mixtape.com',
   stripeKey: 'sk_test_Dhb6ICQkc3hWBCaF1C5IPAI9',
-  front_url: 'https://bookingbravo.com',
-  back_url: 'https://apidev.bookingbravo.com'
+  front_url: 'https://mixtape.com',
+  back_url: 'https://apidev.mixtape.com'
 }

@@ -14,7 +14,7 @@ class PostRepository {
     })
   }
 
-  async getPosts({ filter, sort = {}, page, perPage }) {
+  async getPosts({ filter = {}, sort = {}, page, perPage }) {
     const { categories, tags, author } = filter
     const { order, orderBy } = sort
     try {

@@ -9,12 +9,12 @@
     <mj-wrapper padding="0">
       <mj-section background-color="#FFFFFF">
         <mj-column>
-          <mj-text color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">BookingBravo</mj-text>
+          <mj-text color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">mixtape</mj-text>
         </mj-column>
       </mj-section>
       <mj-section background-color="#FFFFFF">
         <mj-column>
-          <mj-text color="#303030" font-weight="bold" font-size="24px" line-height="29px">Welcome to BookingBravo</mj-text>
+          <mj-text color="#303030" font-weight="bold" font-size="24px" line-height="29px">Welcome to mixtape</mj-text>
         </mj-column>
       </mj-section>
       <mj-section padding-bottom="0px" background-color="#ffffff">
@@ -31,12 +31,12 @@
       </mj-section>
       <mj-section background-color="#ffffff">
         <mj-column>
-          <mj-text color="#203245" font-size="16px" align="left" line-height="20px">For Any questions to BookingBravo services, please submit your request to support team.</mj-text>
+          <mj-text color="#203245" font-size="16px" align="left" line-height="20px">For Any questions to mixtape services, please submit your request to support team.</mj-text>
         </mj-column>
       </mj-section>
       <mj-section background-color="#ffffff">
         <mj-column>
-          <mj-text color="#203245" font-size="16px" line-height="20px">Cheers,<br />Bookingbravo Team</mj-text>
+          <mj-text color="#203245" font-size="16px" line-height="20px">Cheers,<br />mixtape Team</mj-text>
         </mj-column>
       </mj-section>
       <!--Footer-->

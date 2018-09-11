@@ -19,7 +19,7 @@
           <mj-table width="100%" color="#BFBFBF" font-size="34px" font-weight="900" line-height="41px">
             <tr>
               <th align="left">
-                BookingBravo
+                mixtape
               </th>
             </tr>
           </mj-table>
@@ -93,7 +93,7 @@
       </mj-section>
       <mj-section background-color="#FFFFFF" padding-top="0">
         <mj-column width="100%">
-          <mj-button href="https://bookingbravo.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Accepted Booking</mj-button>
+          <mj-button href="https://mixtape.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Accepted Booking</mj-button>
         </mj-column>
       </mj-section>
       <!--FAQ Section-->

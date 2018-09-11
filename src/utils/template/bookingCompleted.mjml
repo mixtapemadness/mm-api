@@ -9,7 +9,7 @@
       <!---Head Section-->
       <mj-section background-color="#ffffff">
         <mj-column>
-          <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">BookingBravo</mj-text>
+          <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34px" line-height="41px">mixtape</mj-text>
         </mj-column>
       </mj-section>
       <!--Booked Section -->
@@ -46,7 +46,7 @@
           </mj-column>
         </mj-group>
         <mj-column width="100%">
-          <mj-button href="https://bookingbravo.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Details</mj-button>
+          <mj-button href="https://mixtape.com/bookingdetails/{{booking.id}}" align="left" background-color="#06C953" height="46px" width="195px" padding-top="36px" font-weight="600" color="#FFFFFF" font-size="16px" line-height="20px">View Details</mj-button>
         </mj-column>
       </mj-section>
       <!--FAQ Section-->

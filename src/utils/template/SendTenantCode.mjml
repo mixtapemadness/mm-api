@@ -5,13 +5,13 @@
         <mj-column width="550px" background-color="#FFFFFF">
           <mj-image width="163" src="https://i.imgur.com/cxc08gh.png"></mj-image>
           <mj-text font-size="24px" align="center" color="#444343" padding-bottom="5px" padding-top="60px">
-             WELCOME TO bookingbravo
+             WELCOME TO mixtape
           </mj-text>
 
           <mj-text font-size="16px" align="center" color="#616161" padding-bottom="5px" padding-top="15px">
             Welcome to your new home. At the start of your new lease you are required to
             complete a WalkThru of your home.
-            You will do this using the bookingbravo app, which is designed for you to
+            You will do this using the mixtape app, which is designed for you to
              take photos and make comments about the move-in condition of the home.
           </mj-text>
           <mj-text font-size="16px" align="center" color="#616161" padding-bottom="5px" padding-top="10px">
@@ -58,7 +58,7 @@
             </div>
           </mj-text>
            <mj-text align="center" font-size="12px" color="#8c8c8c">
-            Copyright 2018 bookingbravo. All rights reserved.
+            Copyright 2018 mixtape. All rights reserved.
           </mj-text>
           </mj-column>
         </mj-section>

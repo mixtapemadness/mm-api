@@ -36,7 +36,7 @@ module.exports = (app) => {
   const controllers = [
     'user',
     // 'helpers',
-    'booking',
+    // 'booking',
     // 'event',
     // 'notification',
     // 'chat',

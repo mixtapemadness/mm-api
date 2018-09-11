@@ -17,7 +17,7 @@
             <!---Head Section-->
             <mj-section background-color="#ffffff">
                 <mj-column>
-                    <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34" line-height="41px">BookingBravo</mj-text>
+                    <mj-text align="left" color="#BFBFBF" font-weight="bold" font-size="34" line-height="41px">mixtape</mj-text>
                 </mj-column>
             </mj-section>
             <!---->
@@ -63,7 +63,7 @@
             <!---->
             <mj-section background-color="#ffffff">
                 <mj-column>
-                    <mj-text color="#203245" font-size="16px" line-height="20px">Cheers, <br /> Bookingbravo Team</mj-text>
+                    <mj-text color="#203245" font-size="16px" line-height="20px">Cheers, <br /> mixtape Team</mj-text>
                 </mj-column>
             </mj-section>
             <!--footer-->

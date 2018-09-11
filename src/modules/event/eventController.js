@@ -6,24 +6,24 @@ var Promise = require('bluebird')
 const roles = require('../roles/roles').roles
 
 class EventController {
-  constructor ({eventRepository}) {
+  constructor({ eventRepository }) {
     this.eventRepository = eventRepository
   }
 
-   /**
-   * @apiVersion 1.0.0
-   * @api {post} /api/v1/event Create event
-   * @apiName CreateEvent
-   * @apiGroup Event
-   * @apiPermission Authorization
-   * @apiDescription Create event
-   *
-   * @apiUse EventModel
-   *
-   * @apiUse defaultSuccessExample201
-   * @apiUse Errors
-   */
-  createEvent (req, res) {
+  /**
+  * @apiVersion 1.0.0
+  * @api {post} /api/v1/event Create event
+  * @apiName CreateEvent
+  * @apiGroup Event
+  * @apiPermission Authorization
+  * @apiDescription Create event
+  *
+  * @apiUse EventModel
+  *
+  * @apiUse defaultSuccessExample201
+  * @apiUse Errors
+  */
+  createEvent(req, res) {
     let options = {}
     global.db.EventModel.httpPost(req, res, options)
   }
@@ -42,7 +42,7 @@ class EventController {
    * @apiUse defaultSuccessExample200
    * @apiUse Errors
    */
-  editEvent (req, res) {
+  editEvent(req, res) {
     let options = {}
     global.db.EventModel.httpPut(req, res, options)
   }
@@ -61,7 +61,7 @@ class EventController {
    * @apiUse defaultSuccessExample200
    * @apiUse Errors
    */
-  deleteEvent (req, res) {
+  deleteEvent(req, res) {
     let options = {}
     // const {_id: userId} = req.user
     req.body.status = 'deleted'
@@ -81,12 +81,12 @@ class EventController {
    * @apiUse defaultSuccessExample200
    * @apiUse Errors
    */
-  listEvent (req, res) {
+  listEvent(req, res) {
     let where = {
       user: req.user._id,
-      status: {$ne: 'deleted'}
+      status: { $ne: 'deleted' }
     }
-    const options = {where}
+    const options = { where }
     global.db.EventModel.httpGet(req, res, options)
   }
 

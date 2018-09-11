@@ -2,13 +2,13 @@
 'use strict'
 
 class InvitationRepository {
-  constructor ({ db, notificationRepository }) {
+  constructor({ db, notificationRepository }) {
     this.db = db
     this.mailService = require('../../services/sendgrid/sendgridSevice')
     this.notificationRepository = notificationRepository
   }
 
-  async sendEmail ({ record }, user) {
+  async sendEmail({ record }, user) {
     try {
       const receiver = await this.db.UserModel.findOne({ _id: record.receiverId })
 
@@ -27,7 +27,7 @@ class InvitationRepository {
     }
   }
 
-  async emailOnUpdate ({ record }, user) {
+  async emailOnUpdate({ record }, user) {
     try {
       const _id = String(record.receiverId) === String(user._id)
         ? record.creator : record.receiverId
@@ -68,7 +68,7 @@ class InvitationRepository {
     }
   }
 
-  async sendNotificationAlertOnInvitation ({ record }, user) {
+  async sendNotificationAlertOnInvitation({ record }, user) {
     try {
       return await this.notificationRepository.registerNotification(
         record.receiverId, // to
@@ -83,7 +83,7 @@ class InvitationRepository {
     }
   }
 
-  async sendNotificationAlertOnModifyInv ({ record }, user) {
+  async sendNotificationAlertOnModifyInv({ record }, user) {
     try {
       const to = String(record.receiverId) === String(user._id)
         ? record.creator : record.receiverId

@@ -1,12 +1,12 @@
 var _ = require('lodash')
 
-module.exports = function(server) {
+module.exports = function (server) {
   var io = require('socket.io')(server)
   let users = {
 
   }
 
-  io.on('connection', function(client) {
+  io.on('connection', function (client) {
     client.on('login', (user) => {
       client.user = user
       users[user.id] = client
@@ -26,9 +26,9 @@ module.exports = function(server) {
     client.on('onlineUserIds', (userIds) => {
       const result = userIds.map(userId => {
         if (users[userId]) {
-          return {userId, online: true}
+          return { userId, online: true }
         }
-        return {userId, online: false}
+        return { userId, online: false }
       })
       client.emit('onlineUserIds', result)
     })
@@ -36,16 +36,16 @@ module.exports = function(server) {
     client.on('chat', (data) => {
       const { toUserId, fromUserId, type, message } = data
       const userClient = users[toUserId]
-        // todo save in the database
+      // todo save in the database
 
       if (userClient) {
-        userClient.emit('chat', {fromUserId, type, message})
+        userClient.emit('chat', { fromUserId, type, message })
       }
     })
 
     client.on('notification', (data) => {
       try {
-        const {userId, message} = data
+        const { userId, message } = data
         const userClient = users[userId]
         if (userClient) {
           userClient.emit('notification', message)
@@ -57,7 +57,7 @@ module.exports = function(server) {
 
     client.on('mail', (data) => {
       try {
-        const {userId, message} = data
+        const { userId, message } = data
         const userClient = users[userId]
         if (userClient) {
           userClient.emit('mail', message)

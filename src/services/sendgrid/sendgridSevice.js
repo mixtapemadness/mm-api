@@ -107,64 +107,64 @@ const sendBookedEmail = user =>
     )
 
 const sendBookingModifiedEmail = user =>
-    mailUtil
-      .readAndRenderTemplate('Booked', Object.assign({}, user, {
-        messageType: 'bookingModified'
-      }))
-      .then(html =>
-        sgMail
-          .send({
-            to: user.email,
-            from: 'no-reply@mixtape.com',
-            subject: 'Review - Booking modified',
-            html
-          })
-      )
+  mailUtil
+    .readAndRenderTemplate('Booked', Object.assign({}, user, {
+      messageType: 'bookingModified'
+    }))
+    .then(html =>
+      sgMail
+        .send({
+          to: user.email,
+          from: 'no-reply@mixtape.com',
+          subject: 'Review - Booking modified',
+          html
+        })
+    )
 
 const sendBookingAcceptedEmail = user =>
-    mailUtil
-      .readAndRenderTemplate('Booked', Object.assign({}, user, {
-        messageType: 'bookingAccepted'
-      }))
-      .then(html =>
-        sgMail
-          .send({
-            to: user.email,
-            from: 'no-reply@mixtape.com',
-            subject: 'Booking request accepted',
-            html
-          })
-      )
+  mailUtil
+    .readAndRenderTemplate('Booked', Object.assign({}, user, {
+      messageType: 'bookingAccepted'
+    }))
+    .then(html =>
+      sgMail
+        .send({
+          to: user.email,
+          from: 'no-reply@mixtape.com',
+          subject: 'Booking request accepted',
+          html
+        })
+    )
 
 const sendBookingRejectionEmail = user =>
-    mailUtil
-      .readAndRenderTemplate('Booked', Object.assign({}, user, {
-        messageType: 'bookingDeclined'
-      }))
-      .then(html =>
-        sgMail
-          .send({
-            to: user.email,
-            from: 'no-reply@mixtape.com',
-            subject: 'Booking request declined',
-            html
-          })
-      )
+  mailUtil
+    .readAndRenderTemplate('Booked', Object.assign({}, user, {
+      messageType: 'bookingDeclined'
+    }))
+    .then(html =>
+      sgMail
+        .send({
+          to: user.email,
+          from: 'no-reply@mixtape.com',
+          subject: 'Booking request declined',
+          html
+        })
+    )
 
 const sendInvitedEmail = user =>
-    mailUtil
-      .readAndRenderTemplate('Booked', Object.assign({}, user, {
-        messageType: 'invitationCreate'
-      }))
-      .then(html =>
-        sgMail
-          .send({
-            to: user.email,
-            from: 'no-reply@mixtape.com',
-            subject: 'New Invitation Received',
-            html
-          })
-      )
+  mailUtil
+    .readAndRenderTemplate('Booked', Object.assign({}, user, {
+      messageType: 'invitationCreate'
+    }))
+    .then(html =>
+      sgMail
+        .send({
+          to: user.email,
+          from: 'no-reply@mixtape.com',
+          subject: 'New Invitation Received',
+          html
+        })
+    )
 
 module.exports = {
   send,

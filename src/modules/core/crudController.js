@@ -1,6 +1,6 @@
 var _ = require('lodash')
 
-module.exports = function(Model) {
+module.exports = function (Model) {
   var schemaQuery = {}
   // if (Model.schema.options.query) {
   //   schemaQuery = Model.schema.options.query
@@ -11,7 +11,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function httpGet (req, res, options = {}) {
+  function httpGet(req, res, options = {}) {
     if (req.params.id !== undefined) {
       return findById(req, res, options)
     } else {
@@ -24,7 +24,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function count (req, res, options = {}) {
+  function count(req, res, options = {}) {
     var requestQuery = req.query
 
     var query = Model.find()
@@ -33,7 +33,7 @@ module.exports = function(Model) {
 
     query.count()
       .then((count) => {
-        return res.ok({count})
+        return res.ok({ count })
       })
       .catch((err) => {
         return res.serverError(err)
@@ -45,7 +45,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function totalPage (req, res, options = {}) {
+  function totalPage(req, res, options = {}) {
     let requestQuery = req.query
 
     let query = Model.find()
@@ -72,7 +72,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function httpPost (req, res, options = {}) {
+  function httpPost(req, res, options = {}) {
     removeReadOnlyFieldFromBody(req)
     let item = new Model(req.body)
 
@@ -103,8 +103,8 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function httpPut (req, res, options = {}) {
-    const checkPermission = options.permission || function() { return true }
+  function httpPut(req, res, options = {}) {
+    const checkPermission = options.permission || function () { return true }
     let oldItem = {}
     removeReadOnlyFieldFromBody(req)
     if (!req.params.id) {
@@ -160,7 +160,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function list (req, res, options = {}) {
+  function list(req, res, options = {}) {
     let requestQuery = req.query
 
     let query = Model.find()
@@ -256,8 +256,8 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function httpDelete (req, res, options = {}) {
-    const checkPermission = options.permission || function() { return true }
+  function httpDelete(req, res, options = {}) {
+    const checkPermission = options.permission || function () { return true }
     if (!req.params.id) {
       return res.badRequest('id is undefined')
     }
@@ -292,7 +292,7 @@ module.exports = function(Model) {
    * @param options
    * @returns {int}
    */
-  function getLimit (requestQuery, options = {}) {
+  function getLimit(requestQuery, options = {}) {
     var limit = null
     if (schemaQuery.limit) {
       limit = schemaQuery.limit
@@ -318,7 +318,7 @@ module.exports = function(Model) {
    * @param options
    * @returns {int}
    */
-  function getSkip (requestQuery, options = {}) {
+  function getSkip(requestQuery, options = {}) {
     var skip = null
     if (schemaQuery.skip) {
       skip = schemaQuery.skip
@@ -344,7 +344,7 @@ module.exports = function(Model) {
    * @param options
    * @returns {int}
    */
-  function getPageSize (requestQuery, options = {}) {
+  function getPageSize(requestQuery, options = {}) {
     var pageSize = null
     if (schemaQuery.pageSize) {
       pageSize = schemaQuery.pageSize
@@ -375,7 +375,7 @@ module.exports = function(Model) {
    * @param options
    * @returns {int}
    */
-  function getWhere (requestQuery, options = {}) {
+  function getWhere(requestQuery, options = {}) {
     var where = {}
 
     if (requestQuery.where !== undefined && requestQuery.where !== '{where}') {
@@ -425,7 +425,7 @@ module.exports = function(Model) {
    * @param options
    * @returns {int}
    */
-  function getSelect (requestQuery, options = {}) {
+  function getSelect(requestQuery, options = {}) {
     var select = null
     if (options.select) {
       select = options.select
@@ -466,7 +466,7 @@ module.exports = function(Model) {
    * @param req
    * @param res
    */
-  function findById (req, res, options = {}) {
+  function findById(req, res, options = {}) {
     let requestQuery = req.query
     let select = getSelect(requestQuery, options)
     let where = {
@@ -512,14 +512,14 @@ module.exports = function(Model) {
       })
   }
 
-  function removeReadOnlyFieldFromBody (req) {
+  function removeReadOnlyFieldFromBody(req) {
     delete req.body.owner
     delete req.body.modifierUser
     delete req.body.created
     delete req.body.modified
   }
 
-  function fixBooleans (obj) {
+  function fixBooleans(obj) {
     for (var property in obj) {
       if (obj.hasOwnProperty(property)) {
         if (typeof obj[property] === 'object') {

@@ -23,9 +23,9 @@ module.exports = (mongoose) => {
       index: 1
     }
   }, {
-    toObject: { virtuals: true },
-    toJSON: { virtuals: true }
-  })
+      toObject: { virtuals: true },
+      toJSON: { virtuals: true }
+    })
 
   invitationSchema.plugin(baseModelPlugin)
 

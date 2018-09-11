@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken')
 var config
 
-module.exports = function(configuration) {
+module.exports = function (configuration) {
   config = configuration
 
   return {
@@ -11,7 +11,7 @@ module.exports = function(configuration) {
   }
 }
 
-function sign (payload) {
+function sign(payload) {
   return jwt.sign(payload, config.secret, {
     algorithm: config.algorithm,
     issuer: config.issuer,
@@ -19,11 +19,11 @@ function sign (payload) {
   })
 }
 
-function decode (token) {
+function decode(token) {
   return jwt.decode(token, { complete: true })
 }
 
-function verify (token) {
+function verify(token) {
   return jwt.verify(token, config.secret, {
     issuer: config.issuer,
     audience: config.audience

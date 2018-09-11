@@ -1,12 +1,12 @@
 const getNotificationRepository = (db) => {
   var NotificationRepository = require('../notification/notificationRepository')
-  return new NotificationRepository({db})
+  return new NotificationRepository({ db })
 }
 
 const getRepository = (db) => {
   var ChatRepository = require('./chatRepository')
   var notificationRepository = getNotificationRepository(db)
-  return new ChatRepository({db, notificationRepository})
+  return new ChatRepository({ db, notificationRepository })
 }
 
 const getCtrl = (db) => {
@@ -24,7 +24,7 @@ const getRouteV1 = (db) => {
   return RouteV1({ isAuthenticated, ctrl: getCtrl(db) })
 }
 
-const getGraphql = ({db, TC}) => {
+const getGraphql = ({ db, TC }) => {
   const { isAuthenticated } = require('../../policies/graphqlAuth')
   require('./chatGraphql')({
     ChatModel: db.ChatModel,

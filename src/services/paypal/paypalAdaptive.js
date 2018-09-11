@@ -4,11 +4,11 @@ const axios = require('axios')
 const config = require('app/config')
 
 class PaypalAdaptiveService {
-  constructor ({ mode = 'production' }) {
+  constructor({ mode = 'production' }) {
     this.mode = mode
   }
 
-  async call ({ operationName, options }) {
+  async call({ operationName, options }) {
     const opts = config.paypal[this.mode]
 
     const client = axios.create({
@@ -28,7 +28,7 @@ class PaypalAdaptiveService {
 
   // Payments
 
-  async pay ({
+  async pay({
     receivers,
     returnUrl,
     cancelUrl,
@@ -59,7 +59,7 @@ class PaypalAdaptiveService {
     })
   }
 
-  async paymentDetails ({ payKey }) {
+  async paymentDetails({ payKey }) {
     return await this.call({
       operationName: 'PaymentDetails',
       options: {
@@ -72,7 +72,7 @@ class PaypalAdaptiveService {
     })
   }
 
-  async executePayment ({ payKey }) {
+  async executePayment({ payKey }) {
     return await this.call({
       operationName: 'ExecutePayment',
       options: {
@@ -85,21 +85,21 @@ class PaypalAdaptiveService {
     })
   }
 
-  getPaymentOptions () {
+  getPaymentOptions() {
 
   }
 
-  SetPaymentOptions () {
+  SetPaymentOptions() {
 
   }
 
-  getPrePaymentDisclosure () {
+  getPrePaymentDisclosure() {
 
   }
 
   // Preapprovals
 
-  async preapproval ({
+  async preapproval({
     startingDate,
     endingDate,
     maxAmountPerPayment,
@@ -134,7 +134,7 @@ class PaypalAdaptiveService {
     })
   }
 
-  async preapprovalDetails ({ preapprovalKey }) {
+  async preapprovalDetails({ preapprovalKey }) {
     return await this.call({
       operationName: 'PreapprovalDetails',
       options: {
@@ -147,7 +147,7 @@ class PaypalAdaptiveService {
     })
   }
 
-  async cancelPreapproval ({ preapprovalKey }) {
+  async cancelPreapproval({ preapprovalKey }) {
     return await this.call({
       operationName: 'CancelPreapproval',
       options: {
@@ -162,19 +162,19 @@ class PaypalAdaptiveService {
 
   // Others...
 
-  refund () {
+  refund() {
 
   }
 
-  convertCurrency () {
+  convertCurrency() {
 
   }
 
-  getFundingPlans () {
+  getFundingPlans() {
 
   }
 
-  getShippingAddresses () {
+  getShippingAddresses() {
 
   }
 }

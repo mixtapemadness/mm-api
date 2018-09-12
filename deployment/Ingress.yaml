@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: basic-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: workep-anycast
+    kubernetes.io/ingress.global-static-ip-name: vobi-anycast
 spec:
   rules:
   - host: mixtapeapi.vobi.io

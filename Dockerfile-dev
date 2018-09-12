@@ -1,24 +1,22 @@
-#FROM keymetrics/pm2:8
-FROM node:8.9.3
+FROM node:carbon
 
 # Create app directory
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+ENV GOOGLE_APPLICATION_CREDENTIALS ./deployment/google-key.json
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY package.json /usr/src/app/
+COPY package.json ./
 
-RUN npm install pm2 -g
-RUN npm install nodemon -g
 RUN npm install
+# RUN npm run postinstall
 # If you are building your code for production
 # RUN npm install --only=production
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . .
 
-EXPOSE 8001
-# CMD [ "npm", "run", "start:devDocker" ]
-CMD ["pm2-docker", "process.json", "--only", "mixtape-backend-development"]
+EXPOSE 7072
+CMD [ "npm", "run", "start:Docker" ]

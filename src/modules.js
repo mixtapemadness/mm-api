@@ -86,6 +86,10 @@ module.exports = (app) => {
       }
     })))
 
+  app.get('/', (req, res) => {
+    res.sendStatus(200)
+  })
+
   // catch 404
   app.use((req, res) => {
     res.notFound()

@@ -16,4 +16,4 @@ spec:
       - name: mixtapeapi
         image: gcr.io/vobi-216108/mixtapeapi:latest
         ports:
-        - containerPort: 7070
+        - containerPort: 7072

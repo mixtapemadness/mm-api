@@ -8,4 +8,7 @@ build trigger:
 1. https://console.cloud.google.com/cloud-build/triggers?authuser=1&project=vobi-216108
 
 
+
 front
+
+gcloud container clusters get-credentials vobi-dev-cluster --zone=us-central1-a  --project vobi-216108 KUBECONFIG=./

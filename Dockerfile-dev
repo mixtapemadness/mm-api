@@ -20,5 +20,5 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 8001
-# CMD [ "npm", "start" ]
+# CMD [ "npm", "run", "start:devDocker" ]
 CMD ["pm2-docker", "process.json", "--only", "mixtape-backend-development"]

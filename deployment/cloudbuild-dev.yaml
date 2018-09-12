@@ -7,4 +7,4 @@ steps:
   args: ['set', 'image', 'deployment/mixtapeapi', 'mixtapeapi=gcr.io/vobi-216108/mixtapeapi:$BUILD_ID']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=workep-kubernetes'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=-vobi-dev-cluster'

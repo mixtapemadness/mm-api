@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "vobi-216108",
-  "private_key_id": "dc815beae09d857e5bfd903bafaa3881f73ff1df",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+3ZLmuPQFSyZs\no9qmhP1fIBtKrhtOfOuQ0k2GiQrFn5ZBPRsA71rZa38JfweVwiSa3zgFS5Z2/u3Q\noFvxpCsX78ZPDQkOSfZTdl9dJtdVZjwhnIpFQQwlPRINhaB7hjMOxhdwrOpN2wz7\nCrTH8RoMFsqTEwG38C8eMhhF+xeq8Bf5gXrtfKf+pMPEgHHiC2m7JRqjWDCKww8v\nN/rLyzBvwunSA/saD3o9w35cMMELg+mJzPue7s487Mc6xHfZLF7KMD5pRNEQDlKj\n6Tl9Xmu4NnlxdTUxDN/ERKj9EGDj5XtlCVGSMgJwcaAG/g7TxUp5qMa6nTF4yo5y\nxFzeSCRjAgMBAAECggEACcxEWo6ZMWaoxgSpBjdU7dcvPTDCTYaYJJPrvS9upLOd\nZ9o65O5ACarz4Ik0kZ4WndJihPekGgO16QU7hVs1h6+cOjoRXcxqMZhcmOK4spC9\n1g9OSvPTmTbsgFJYDdGOFNxbjNRYJj+Uvriq1WVSPmnFGrKQgymc/Qb6ct+Bxquy\n/RBvxcCaApv7QH5XuxHBtMYfV2AekwwDWEVLwM+uBefbcDoPfEge9Ke/4TsEgIOD\nf/mwF1YW75Nw5QGbcrDODABb8sVEEHoB6Jv8npwLVi6o3V4LutBpnjmMWhfQqddP\n4WDSfsFmD5Ckr7bL9zBJD7ljt1jxKsyGNp/2sr03IQKBgQDqG1VV+BiCJ/uwrkAe\nNzfSHbMlgG6Hv2KmMReY56Y1dOOPcJCMghGYTkGBAT5IisjGtg6hrMmJNBx+PjJt\nQDI9HTF5grybk81fHjpU428U9EC3qwCYnKNEisGhKGJEydd2o3uaPqhh9FTGz6ve\n7nlW52P39NG4OUeQvvgUeuB06wKBgQDQtwRnRqFpA1EqI8Lzh6q5tT4pawv9/tum\n0vy0IQ/1Zv/cu7E9477ZKIvBDuTnKBeDLbRNTTn9ZtCNvbNsNrBJW17TGS7gf2wk\nnCC44NjRwjiTAiFkAm7KkkzaBzGFF+d+Nr/Lk9sBqKvtsM4zREOP6PWPmj20fX83\n0MPmFlyQaQKBgQCxshefDpcDzHeWD12p0b30JgkCES9UqKengCHqNQMLFnNYQFfn\n3x6d3eCInDn7dCSb+Dq46196Xmy2Ql2iYZUAoHUaR2sEKDc92MLsBkodvJyXDRyB\nunuPHkeFHRMiJZb/fW3nkWHcIEptMdrCd37wwOg3oMPDMu8oZlwFp5NSCwKBgHiR\nsT6D48yJOQLx47XRIoPjOoSsrSHOb08gxRC9pL1sAdSerJYHEYHbVVhyZTNPyr1h\n0q1xNlW3ZjTraFHUCeRmnxGtk5Hmqi8/7fs/EKGj5BCwg1+FtEDbYP/2ddnf5D/a\nGtPclwCPUrqdj5C4F5tzxR9ux8STVsGEnRY2xsQ5AoGAFjeYnt7zT46fwIzxQa/2\nZBKKhtr458GHwLWs0C0It+FZdWed7NfIvNYrNU2mpU/gGzVtc3GpLqADO1yWruxi\nvIgZPVbDgHYJE2CD+aNHPiwPuvIP7znBRPaLPRC3aBw0Hs+IXYFyxKhDGJsX8MQ2\nABG9fHop7bLlkn3K/bMTKGU=\n-----END PRIVATE KEY-----\n",
-  "client_email": "466552450736-compute@developer.gserviceaccount.com",
-  "client_id": "109772774729050272403",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/466552450736-compute%40developer.gserviceaccount.com"
-}
+{"installed":{"client_id":"466552450736-2k07vf28fots5nfe9e8ce70dlvt6v9u9.apps.googleusercontent.com","project_id":"vobi-216108","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://www.googleapis.com/oauth2/v3/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"EbKr-dWyY9-7P0kDVb3Gyw2X","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}

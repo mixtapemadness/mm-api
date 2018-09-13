@@ -30,7 +30,10 @@ module.exports = ({ MediaRepository, TC }) => {
       alt_text: 'String',
       media_type: 'String',
       mime_type: 'String',
-      post: 'ID'
+      post: 'ID',
+      imgs: `type ImgsType {
+        featured_image: String
+      }`
     }
   })
 

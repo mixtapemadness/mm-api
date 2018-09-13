@@ -6,8 +6,10 @@ module.exports = ({ PostsRepository, TC }) => {
     TypeComposer,
     TagTC,
     CategoriesTC,
+    UserTC,
     InputTypeComposer,
-    EnumTypeComposer
+    EnumTypeComposer,
+    MediaTC
   } = TC
 
   const PostsTC = TypeComposer.create({
@@ -27,23 +29,14 @@ module.exports = ({ PostsRepository, TC }) => {
       title: 'String',
       content: 'String',
       excerpt: 'String',
-      author: 'Int',
       featured_media: 'Int',
       comment_status: 'String',
       ping_status: 'String',
       sticky: 'Boolean',
       template: 'String',
       format: 'String',
-      meta: ['String']
-    }
-  })
-
-  const filterPostInput = InputTypeComposer.create({
-    name: 'filterPostInput',
-    fields: {
-      categories: ['ID'],
-      tags: ['ID'],
-      author: ['ID']
+      meta: ['String'],
+      author: 'ID'
     }
   })
 
@@ -60,6 +53,29 @@ module.exports = ({ PostsRepository, TC }) => {
       TITLE_DESC: { value: { order: 'desc', orderBy: 'title' } }
       // FEATURED_ASC: { value: { order: 'asc', orderBy: 'featured_media' } },
       // FEATURED_DESC: { value: { order: 'desc', orderBy: 'featured_media' } }
+    }
+  })
+
+  const FilterPostCategoryInput = EnumTypeComposer.create({
+    name: 'filterPostCategoryInput',
+    values: {
+      VIDEOS: { value: 15 },
+      NEWS: { value: 238 },
+      ARTICLES: { value: 3 },
+      UNCATEGORIZED: { value: 1 },
+      EVENTS: { value: 247 },
+      INTERVIEWS: { value: 8 },
+      REVIEWS: { value: 237 }
+    }
+  })
+
+  const filterPostInput = InputTypeComposer.create({
+    name: 'filterPostInput',
+    fields: {
+      categories: [FilterPostCategoryInput],
+      tags: ['ID'],
+      author: ['ID'],
+      search: 'String'
     }
   })
 
@@ -106,8 +122,26 @@ module.exports = ({ PostsRepository, TC }) => {
   )
 
   PostsTC.addRelation(
-    'Category', {
+    'category', {
       resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
+      prepareArgs: {
+        id: (source) => source.id
+      }
+    }
+  )
+
+  PostsTC.addRelation(
+    'author', {
+      resolver: () => UserTC.getResolver('getUserById'),
+      prepareArgs: {
+        id: (source) => source.author
+      }
+    }
+  )
+
+  PostsTC.addRelation(
+    'media', {
+      resolver: () => MediaTC.getResolver('getMediaByParent'),
       prepareArgs: {
         id: (source) => source.id
       }

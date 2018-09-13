@@ -10,7 +10,11 @@ class MediasRepository {
       guid: obj.guid.rendered,
       title: obj.title.rendered,
       description: obj.description.rendered,
-      caption: obj.caption.rendered
+      caption: obj.caption.rendered,
+      imgs: {
+        featured_image: obj.media_details.sizes['featured-image'].source_url
+      }
+
     })
   }
 

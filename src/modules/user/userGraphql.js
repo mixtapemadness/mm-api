@@ -40,9 +40,19 @@ module.exports = ({ UserRepository, TC }) => {
     }
   })
 
+  UserTC.addResolver({
+    name: 'getUserBySlug',
+    args: { slug: 'ID' },
+    type: UserTC,
+    resolve: ({ source, args }) => {
+      return UserRepository.getUserBySlug(args.slug)
+    }
+  })
+
   schemaComposer.rootQuery().addFields({
     getUsers: UserTC.getResolver('getUsers'),
-    getUserById: UserTC.getResolver('getUserById')
+    getUserById: UserTC.getResolver('getUserById'),
+    getUserBySlug: UserTC.getResolver('getUserBySlug')
   })
 
   TC.UserTC = UserTC

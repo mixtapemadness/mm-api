@@ -33,6 +33,16 @@ class UserRepository {
     }
   }
 
+  async getUserBySlug(slug) {
+    try {
+      const user = await this.wp.users().param('slug', slug)
+      const newUser = this.MutateUserObj(user)
+      return newUser
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
 }
 
 module.exports = UserRepository

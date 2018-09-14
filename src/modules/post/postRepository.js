@@ -1,4 +1,6 @@
 'use strict'
+const stripHtml = require('string-strip-html')
+
 class PostRepository {
   constructor(wp) {
     this.wp = wp
@@ -12,20 +14,21 @@ class PostRepository {
   MutatePostObj(obj) {
     return Object.assign({}, obj, {
       guid: obj.guid.rendered,
-      title: this.trim(obj.title.rendered),
-      content: this.trim(obj.content.rendered),
-      excerpt: obj.excerpt.rendered
+      title: stripHtml(obj.title.rendered),
+      content: stripHtml(obj.content.rendered),
+      excerpt: stripHtml(obj.excerpt.rendered)
     })
   }
 
   async getPosts({ filter = {}, sort = {}, page, perPage }) {
-    const { categories, tags, author, search } = filter
+    const { categories, tags, author, search, slug } = filter
     const { order, orderBy } = sort
     try {
       const posts = await this.wp.posts()
         .param('categories', categories)
         .param('tags', tags)
         .param('authors', author)
+        .param('slug', slug)
         .order(order).orderby(orderBy)
         .perPage(perPage).page(page)
         .search(search)

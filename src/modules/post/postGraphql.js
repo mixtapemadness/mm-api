@@ -75,7 +75,8 @@ module.exports = ({ PostsRepository, TC }) => {
       categories: [FilterPostCategoryInput],
       tags: ['ID'],
       author: ['ID'],
-      search: 'String'
+      search: 'String',
+      slug: 'String'
     }
   })
 

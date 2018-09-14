@@ -33,6 +33,7 @@ module.exports = ({ MediaRepository, TC }) => {
       post: 'ID',
       imgs: `type ImgsType {
         featured_image: String
+        full:String
       }`
     }
   })

@@ -36,7 +36,8 @@ module.exports = ({ PostsRepository, TC }) => {
       template: 'String',
       format: 'String',
       meta: ['String'],
-      author: 'ID'
+      author: 'ID',
+      media: 'ID'
     }
   })
 

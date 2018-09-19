@@ -3,6 +3,7 @@ module.exports = (connection, name = '') => {
   var mongoose = require('mongoose')
   mongoose.Promise = global.Promise // set native promise
 
+  return mongoose
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.NODE_ENV === 'development_local'

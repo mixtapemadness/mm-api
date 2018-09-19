@@ -59,6 +59,16 @@ class PostRepository {
     }
   }
 
+  async getPostBySlug(slug) {
+    try {
+      const post = await this.wp.posts().param('slug', slug)
+      const newPost = this.MutatePostObj(post[0])
+      return newPost
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
   async getPostsByCategoriesId(id) {
     try {
       const posts = await this.wp.posts().param('categories', id)

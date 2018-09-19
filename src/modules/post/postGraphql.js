@@ -116,6 +116,17 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  PostsTC.addResolver({
+    name: 'getPostBySlug',
+    args: {
+      slug: 'String'
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getPostBySlug(args)
+    }
+  })
+
   // PostsTC.addResolver({
   //   name: 'getPostsByCategoriesId',
   //   args: { id: 'ID' },
@@ -165,7 +176,8 @@ module.exports = ({ PostsRepository, TC }) => {
   schemaComposer.rootQuery().addFields({
     getPosts: PostsTC.getResolver('getPosts'),
     getPostById: PostsTC.getResolver('getPostById'),
-    searchPosts: PostsTC.getResolver('searchPosts')
+    searchPosts: PostsTC.getResolver('searchPosts'),
+    getPostBySlug: PostsTC.getResolver('getPostBySlug')
     // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 

@@ -42,7 +42,7 @@ module.exports = ({ UserRepository, TC }) => {
 
   UserTC.addResolver({
     name: 'getUserBySlug',
-    args: { slug: 'ID' },
+    args: { slug: 'String' },
     type: UserTC,
     resolve: ({ source, args }) => {
       return UserRepository.getUserBySlug(args.slug)

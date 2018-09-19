@@ -12,6 +12,14 @@ class CategoriesRepository {
     }
   }
 
+  getCategoryByID(id) {
+    try {
+      return this.wp.categories().id(id)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
   getCategoriesByPostId(id) {
     try {
       return this.wp.categories().param('post', id)

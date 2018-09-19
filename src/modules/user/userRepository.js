@@ -26,7 +26,7 @@ class UserRepository {
   async getUserById(id) {
     try {
       const user = await this.wp.users().id(id)
-      const newUser = this.MutateUserObj(user)
+      const newUser = await this.MutateUserObj(user)
       return newUser
     } catch (e) {
       console.log('e', e)

@@ -21,7 +21,7 @@ class PostRepository {
   }
 
   async getPosts({ filter = {}, sort = {}, page, perPage }) {
-    const { categories, tags, author, search, slug } = filter
+    const { categories, tags, author, slug } = filter
     const { order, orderBy } = sort
     try {
       const posts = await this.wp.posts()
@@ -31,7 +31,18 @@ class PostRepository {
         .param('slug', slug)
         .order(order).orderby(orderBy)
         .perPage(perPage).page(page)
+      return posts.map(item => this.MutatePostObj(item))
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+  async searchPosts({ filter = {}, page, perPage }) {
+    const { search } = filter
+    try {
+      const posts = await this.wp.posts()
         .search(search)
+        .perPage(perPage).page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
       console.log('e', e)

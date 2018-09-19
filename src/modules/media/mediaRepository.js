@@ -11,10 +11,8 @@ class MediasRepository {
       title: obj.title.rendered,
       description: obj.description.rendered,
       caption: obj.caption.rendered,
-      imgs: {
-        featured_image: obj.media_details.sizes['featured-image'].source_url,
-        full: obj.media_details.sizes.full.source_url
-      }
+      featured_image: obj.media_details.sizes['featured-image'].source_url,
+      full: obj.media_details.sizes.full.source_url
     })
   }
 
@@ -22,6 +20,15 @@ class MediasRepository {
     try {
       const media = await this.wp.media()
       return media.map(item => this.MutateMediaObj(item))
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+  async getMediaById(id) {
+    try {
+      const media = await this.wp.media().id(id)
+      return this.MutateMediaObj(media)
     } catch (e) {
       console.log('e', e)
     }

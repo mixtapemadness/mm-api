@@ -19,7 +19,6 @@ module.exports = ({ PostsRepository, TC }) => {
       date: 'String',
       date_gmt: 'String',
       link: 'String',
-      name: 'String',
       slug: 'String',
       guid: 'ID',
       modified: 'String',
@@ -29,14 +28,15 @@ module.exports = ({ PostsRepository, TC }) => {
       title: 'String',
       content: 'String',
       excerpt: 'String',
-      featured_media: 'Int',
       comment_status: 'String',
       ping_status: 'String',
       sticky: 'Boolean',
       template: 'String',
       format: 'String',
       meta: ['String'],
-      author: 'ID'
+      featured_media: 'ID',
+      author: 'ID',
+      categories: ['ID']
     }
   })
 
@@ -103,6 +103,19 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  PostsTC.addResolver({
+    name: 'searchPosts',
+    args: {
+      filter: filterPostInput,
+      perPage: 'ID',
+      page: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.searchPosts(args)
+    }
+  })
+
   // PostsTC.addResolver({
   //   name: 'getPostsByCategoriesId',
   //   args: { id: 'ID' },
@@ -114,7 +127,7 @@ module.exports = ({ PostsRepository, TC }) => {
 
   // Relations
   PostsTC.addRelation(
-    'tags', {
+    'tagsData', {
       resolver: () => TagTC.getResolver('getTagsByPostId'),
       prepareArgs: {
         id: (source) => source.id
@@ -123,7 +136,7 @@ module.exports = ({ PostsRepository, TC }) => {
   )
 
   PostsTC.addRelation(
-    'category', {
+    'categoryData', {
       resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
       prepareArgs: {
         id: (source) => source.id
@@ -132,7 +145,7 @@ module.exports = ({ PostsRepository, TC }) => {
   )
 
   PostsTC.addRelation(
-    'author', {
+    'authorData', {
       resolver: () => UserTC.getResolver('getUserById'),
       prepareArgs: {
         id: (source) => source.author
@@ -141,7 +154,7 @@ module.exports = ({ PostsRepository, TC }) => {
   )
 
   PostsTC.addRelation(
-    'media', {
+    'mediaData', {
       resolver: () => MediaTC.getResolver('getMediaByParent'),
       prepareArgs: {
         id: (source) => source.id
@@ -151,7 +164,8 @@ module.exports = ({ PostsRepository, TC }) => {
 
   schemaComposer.rootQuery().addFields({
     getPosts: PostsTC.getResolver('getPosts'),
-    getPostById: PostsTC.getResolver('getPostById')
+    getPostById: PostsTC.getResolver('getPostById'),
+    searchPosts: PostsTC.getResolver('searchPosts')
     // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 

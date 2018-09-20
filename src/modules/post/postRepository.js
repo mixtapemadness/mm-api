@@ -74,6 +74,15 @@ class PostRepository {
     }
   }
 
+  async getPostsByAuthorId(id) {
+    try {
+      const posts = await this.wp.posts().param('author', id)
+      return posts.map(item => this.MutatePostObj(item))
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
   async getPostsByCategoriesId(id) {
     try {
       const posts = await this.wp.posts().param('categories', id)

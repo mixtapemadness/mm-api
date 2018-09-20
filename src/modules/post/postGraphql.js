@@ -36,7 +36,8 @@ module.exports = ({ PostsRepository, TC }) => {
       meta: ['String'],
       featured_media: 'ID',
       author: 'ID',
-      categories: ['ID']
+      categories: ['ID'],
+      tags: ['ID']
     }
   })
 
@@ -127,6 +128,17 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  PostsTC.addResolver({
+    name: 'getPostsByAuthorId',
+    args: {
+      id: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsByAuthorId(args.id)
+    }
+  })
+
   // PostsTC.addResolver({
   //   name: 'getPostsByCategoriesId',
   //   args: { id: 'ID' },
@@ -177,7 +189,8 @@ module.exports = ({ PostsRepository, TC }) => {
     getPosts: PostsTC.getResolver('getPosts'),
     getPostById: PostsTC.getResolver('getPostById'),
     searchPosts: PostsTC.getResolver('searchPosts'),
-    getPostBySlug: PostsTC.getResolver('getPostBySlug')
+    getPostBySlug: PostsTC.getResolver('getPostBySlug'),
+    getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId')
     // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 

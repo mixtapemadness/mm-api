@@ -33,7 +33,7 @@ class PostRepository {
         .perPage(perPage).page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -50,7 +50,7 @@ class PostRepository {
         .perPage(perPage).page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -60,7 +60,7 @@ class PostRepository {
       const newPost = this.MutatePostObj(post)
       return newPost
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -70,7 +70,7 @@ class PostRepository {
       const newPost = this.MutatePostObj(post[0])
       return newPost
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -79,7 +79,7 @@ class PostRepository {
       const posts = await this.wp.posts().param('author', id)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -88,7 +88,7 @@ class PostRepository {
       const posts = await this.wp.posts().param('categories', id)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 

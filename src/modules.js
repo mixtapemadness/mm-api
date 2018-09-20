@@ -35,6 +35,7 @@ module.exports = (app) => {
 
   const controllers = [
     'user',
+    'comments',
     // 'helpers',
     // 'booking',
     // 'event',

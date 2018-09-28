@@ -21,7 +21,7 @@ class MediasRepository {
       const media = await this.wp.media()
       return media.map(item => this.MutateMediaObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -30,7 +30,7 @@ class MediasRepository {
       const media = await this.wp.media().id(id)
       return this.MutateMediaObj(media)
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -39,7 +39,7 @@ class MediasRepository {
       const media = await this.wp.media().param('parent', id)
       return media.map(item => this.MutateMediaObj(item))
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 }

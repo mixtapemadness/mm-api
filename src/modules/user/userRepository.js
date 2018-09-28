@@ -19,7 +19,7 @@ class UserRepository {
       const newUser = users.map(item => this.MutateUserObj(item))
       return newUser
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -29,7 +29,7 @@ class UserRepository {
       const newUser = await this.MutateUserObj(user)
       return newUser
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 
@@ -37,13 +37,11 @@ class UserRepository {
     try {
       const user = await this.wp.users().param('slug', slug)
       const newUser = this.MutateUserObj(user[0])
-      console.log('newUser', newUser)
       return newUser
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
-
 }
 
 module.exports = UserRepository

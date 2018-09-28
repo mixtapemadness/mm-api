@@ -131,11 +131,13 @@ module.exports = ({ PostsRepository, TC }) => {
   PostsTC.addResolver({
     name: 'getPostsByAuthorId',
     args: {
-      id: 'ID'
+      id: 'ID',
+      perPage: 'ID',
+      page: 'ID'
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.getPostsByAuthorId(args.id)
+      return PostsRepository.getPostsByAuthorId(args)
     }
   })
 

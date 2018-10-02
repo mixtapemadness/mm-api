@@ -41,6 +41,13 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  const CountTC = TypeComposer.create({
+    name: 'CountType',
+    fields: {
+      count: 'String'
+    }
+  })
+
   const sortPostInput = EnumTypeComposer.create({
     name: 'sortPostInput',
     values: {
@@ -114,6 +121,17 @@ module.exports = ({ PostsRepository, TC }) => {
     type: [PostsTC],
     resolve: ({ args }) => {
       return PostsRepository.searchPosts(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPostsCount',
+    args: {
+      filter: filterPostInput
+    },
+    type: CountTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsCount(args)
     }
   })
 
@@ -192,7 +210,8 @@ module.exports = ({ PostsRepository, TC }) => {
     getPostById: PostsTC.getResolver('getPostById'),
     searchPosts: PostsTC.getResolver('searchPosts'),
     getPostBySlug: PostsTC.getResolver('getPostBySlug'),
-    getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId')
+    getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId'),
+    getPostsCount: PostsTC.getResolver('getPostsCount')
     // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 

@@ -1,5 +1,6 @@
 'use strict'
 // const stripHtml = require('string-strip-html')
+// var _ = require('lodash')
 
 class PostRepository {
   constructor(wp) {
@@ -18,6 +19,16 @@ class PostRepository {
       content: obj.content.rendered,
       excerpt: obj.excerpt.rendered
     })
+  }
+
+  async getPostsCount({ filter = {} }) {
+    const { categories, tags, author, slug } = filter
+    const count = await this.wp.posts()
+      .param('categories', categories)
+      .param('tags', tags)
+      .param('authors', author)
+      .param('slug', slug)
+    return Object.assign({}, { count: count._paging.totalPages })
   }
 
   async getPosts({ filter = {}, sort = {}, page, perPage }) {

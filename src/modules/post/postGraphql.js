@@ -68,6 +68,7 @@ module.exports = ({ PostsRepository, TC }) => {
     name: 'filterPostCategoryInput',
     values: {
       VIDEOS: { value: 15 },
+      AUDIO: { value: 2301 },
       NEWS: { value: 238 },
       ARTICLES: { value: 3 },
       UNCATEGORIZED: { value: 1 },

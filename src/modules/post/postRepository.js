@@ -28,7 +28,8 @@ class PostRepository {
       .param('tags', tags)
       .param('authors', author)
       .param('slug', slug)
-    return Object.assign({}, { count: count._paging.totalPages })
+    console.log('count._paging.totalPages', count._paging.total)
+    return Object.assign({}, { count: count._paging.total })
   }
 
   async getPosts({ filter = {}, sort = {}, page, perPage }) {

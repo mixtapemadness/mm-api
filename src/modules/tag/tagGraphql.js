@@ -44,7 +44,6 @@ module.exports = ({ TagRepository, TC }) => {
     args: { id: 'ID' },
     type: [TagTC],
     resolve: ({ args }) => {
-      console.log('PostsTC', UserTC)
       return TagRepository.getTagsByPostId(args.id)
     }
   })

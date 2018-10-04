@@ -22,7 +22,6 @@ class CategoriesRepository {
 
   getCategoriesByPostId(id) {
     try {
-      console.log('id', id)
       return this.wp.categories().param('post', id)
     } catch (e) {
       return Promise.reject(e)

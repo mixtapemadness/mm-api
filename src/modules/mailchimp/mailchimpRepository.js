@@ -10,12 +10,13 @@ class MailChimpRepository {
   }
 
   async Subscribe(args) {
+    console.log('args', args)
     return new Promise((resolve, reject) => {
       const Item = {
         ...args
       }
       const data = {
-        email_address: args.email,
+        email_address: args.email_address,
         status: 'subscribed'
       }
       const options = {

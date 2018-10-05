@@ -10,14 +10,14 @@ module.exports = ({ MailChimpRepository, TC }) => {
     name: 'MailChimpType',
     fields: {
       email_address: 'ID!',
-      status: 'String'
+      status: 'Boolean'
     }
   })
 
   MailChimpTC.addResolver({
     name: 'subscribeToMailchimp',
     args: {
-      email: 'String'
+      email_address: 'String'
     },
     type: MailChimpTC,
     resolve: ({ source, args }) => {

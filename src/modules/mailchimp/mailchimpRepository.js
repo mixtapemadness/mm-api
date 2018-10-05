@@ -22,19 +22,11 @@ class MailChimpRepository {
       const options = {
         json: data,
         headers: {
-          Authorization:
-            'Basic ' +
-            new Buffer('anystring' + ':' + MAILCHIMP_API_KEY).toString(
-              'base64'
-            )
+          Authorization: 'Basic ' + new Buffer('any:' + MAILCHIMP_API_KEY).toString('base64')
         },
         method: 'POST',
-        uri:
-          'https://' +
-          MAILCHIMP_INSTANCE +
-          '.api.mailchimp.com/3.0/lists/' +
-          MAILCHIMP_LIST_ID +
-          '/members/'
+        uri: `https://${MAILCHIMP_INSTANCE}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members/`
+
       }
       request(options)
         .then(data => {

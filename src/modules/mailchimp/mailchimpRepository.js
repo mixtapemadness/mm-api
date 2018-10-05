@@ -18,7 +18,6 @@ class MailChimpRepository {
         email_address: args.email,
         status: 'subscribed'
       }
-
       const options = {
         json: data,
         headers: {
@@ -28,7 +27,6 @@ class MailChimpRepository {
               'base64'
             )
         },
-
         method: 'POST',
         uri:
           'https://' +
@@ -37,7 +35,6 @@ class MailChimpRepository {
           MAILCHIMP_LIST_ID +
           '/members/'
       }
-
       request(options)
         .then(data => {
           return resolve(Item)

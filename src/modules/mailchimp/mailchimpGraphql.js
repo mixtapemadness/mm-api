@@ -25,7 +25,7 @@ module.exports = ({ MailChimpRepository, TC }) => {
     }
   })
 
-  schemaComposer.rootQuery().addFields({
+  schemaComposer.rootMutation().addFields({
     subscribeToMailchimp: MailChimpTC.getResolver('subscribeToMailchimp')
   })
 

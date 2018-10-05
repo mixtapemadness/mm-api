@@ -46,6 +46,7 @@ module.exports = (app) => {
     // 'payment',
     'media',
     // 'user',
+    'mailchimp',
     'tag',
     'category',
     'post'

@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = ({ MailChimpRepository, TC }) => {
+module.exports = ({ mailchimpRepository, TC }) => {
   const {
     schemaComposer,
     TypeComposer
@@ -21,7 +21,7 @@ module.exports = ({ MailChimpRepository, TC }) => {
     },
     type: MailChimpTC,
     resolve: ({ source, args }) => {
-      return MailChimpRepository.Subscribe(args)
+      return mailchimpRepository.Subscribe(args)
     }
   })
 

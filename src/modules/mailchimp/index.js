@@ -7,7 +7,7 @@ const getGraphql = ({ db, TC, wp }) => {
   return require('app/modules/mailchimp/mailchimpGraphql')({
     BookingModel: db.BookingModel,
     TC,
-    MailChimpRepository: getMailChimpRepository(wp)
+    mailchimpRepository: getMailChimpRepository(wp)
   })
 }
 

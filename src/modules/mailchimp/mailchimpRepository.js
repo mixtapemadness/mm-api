@@ -18,10 +18,7 @@ class MailChimpRepository {
         email_address: args.email_address,
         status: 'subscribed'
       }
-
       const url = `https://${MAILCHIMP_INSTANCE}.api.mailchimp.com/3.0/lists/${MAILCHIMP_LIST_ID}/members/`
-
-
       request.post(url)
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + MAILCHIMP_API_KEY).toString('base64'))
@@ -30,10 +27,8 @@ class MailChimpRepository {
           if (err) {
             return reject(err)
           }
-
           return resolve(Item)
         })
-
     })
   }
 

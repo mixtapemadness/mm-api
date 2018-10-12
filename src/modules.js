@@ -34,7 +34,6 @@ module.exports = (app) => {
   })
 
   const controllers = [
-    'user',
     // 'helpers',
     // 'booking',
     // 'event',
@@ -44,8 +43,8 @@ module.exports = (app) => {
     // 'review',
     // 'invitation',
     // 'payment',
+    'user',
     'media',
-    // 'user',
     'mailchimp',
     'tag',
     'category',
@@ -74,14 +73,14 @@ module.exports = (app) => {
   })
 
   const graphqlSchema = schemaComposer.buildSchema()
-  const graphqlAuth = require('./policies/graphqlAuth')
+  // const graphqlAuth = require('./policies/graphqlAuth')
 
   app.use(
     '/graphql',
-    graphqlAuth
-      .authMiddleware({
-        db: global.db
-      }),
+    // graphqlAuth
+      // .authMiddleware({
+      //   db: global.db
+      // }),
     apolloUploadExpress(app.get('configuration').upload),
     graphqlHTTP((req, res) => ({
       schema: graphqlSchema,

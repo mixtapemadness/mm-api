@@ -104,6 +104,16 @@ module.exports = ({ PostsRepository, TC }) => {
   })
 
   PostsTC.addResolver({
+    name: 'getTopPosts',
+    args: {
+    },
+    type: [PostsTC],
+    resolve: () => {
+      return PostsRepository.getTopPosts()
+    }
+  })
+
+  PostsTC.addResolver({
     name: 'getPostById',
     args: { id: 'ID' },
     type: PostsTC,

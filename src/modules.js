@@ -69,7 +69,7 @@ module.exports = (app) => {
     const mod = require(modulesRoot + ctrl)
     mod.initModel(global.db, mongoose)
     mod.getGraphql({ db: global.db, TC, wp })
-    app.map(mod.getRouteV1(global.db))
+    app.map(mod.getRouteV1(wp))
   })
 
   const graphqlSchema = schemaComposer.buildSchema()

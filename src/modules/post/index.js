@@ -11,10 +11,20 @@ const getGraphql = ({ db, TC, wp }) => {
   })
 }
 
+const getCtrl = (wp) => {
+  var PostController = require('./postController')
+  return new PostController(wp)
+}
+
+const getRouteV1 = (wp) => {
+  let RouteV1 = require('./postRoutes.v1')
+  return RouteV1({ ctrl: getCtrl(wp) })
+}
+
 module.exports = {
   getPostsRepository,
   getGraphql,
   initModel: () => '',
-  getRouteV1: () => ''
+  getRouteV1
 }
 

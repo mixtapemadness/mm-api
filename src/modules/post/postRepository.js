@@ -36,12 +36,12 @@ class PostRepository {
     const { order, orderBy } = sort
     try {
       const posts = await this.wp.posts()
-        .param('categories', categories)
-        .param('tags', tags)
-        .param('authors', author)
-        .param('slug', slug)
-        .order(order).orderby(orderBy)
-        .perPage(perPage).page(page)
+      .param('categories', categories)
+      .param('tags', tags)
+      .param('authors', author)
+      .param('slug', slug)
+      .order(order).orderby(orderBy)
+      .perPage(perPage).page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
       return Promise.reject(e)

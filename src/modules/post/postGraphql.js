@@ -170,6 +170,62 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  PostsTC.addResolver({
+    name: 'getNextPostByAuthorId',
+    args: {
+      id: 'ID',
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID'
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getNextPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPrevPostByAuthorId',
+    args: {
+      id: 'ID',
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPrevPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getNextPost',
+    args: {
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID',
+      filter: filterPostInput
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getNextPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPrevPost',
+    args: {
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID',
+      filter: filterPostInput
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPrevPost(args)
+    }
+  })
+
   // PostsTC.addResolver({
   //   name: 'getPostsByCategoriesId',
   //   args: { id: 'ID' },
@@ -222,7 +278,12 @@ module.exports = ({ PostsRepository, TC }) => {
     searchPosts: PostsTC.getResolver('searchPosts'),
     getPostBySlug: PostsTC.getResolver('getPostBySlug'),
     getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId'),
-    getPostsCount: PostsTC.getResolver('getPostsCount')
+    getPostsCount: PostsTC.getResolver('getPostsCount'),
+    getNextPost: PostsTC.getResolver('getNextPost'),
+    getPrevPost: PostsTC.getResolver('getPrevPost'),
+    getNextPostByAuthorId: PostsTC.getResolver('getNextPostByAuthorId'),
+    getPrevPostByAuthorId: PostsTC.getResolver('getPrevPostByAuthorId')
+
     // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 

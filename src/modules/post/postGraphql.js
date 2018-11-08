@@ -74,7 +74,8 @@ module.exports = ({ PostsRepository, TC }) => {
       UNCATEGORIZED: { value: 1 },
       EVENTS: { value: 247 },
       INTERVIEWS: { value: 8 },
-      REVIEWS: { value: 237 }
+      REVIEWS: { value: 237 },
+      DOCUMENTARY: { value: 2106 }
     }
   })
 

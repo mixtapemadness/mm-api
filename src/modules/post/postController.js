@@ -17,7 +17,8 @@ class PostController {
       const unStrippedTitle = post[0].title.rendered
       const title = stripHtml(unStrippedTitle)
       const img = media.media_details.sizes['featured-image'].source_url
-      const description = post[0].excerpt.rendered
+      const description = stripHtml(post[0].excerpt.rendered)
+
       res.render('postShare', { url: config.HTTP_HOST, frontUrl: config.front_url, description, title, img, category, slug})
     } catch (e) {
       return Promise.reject(e)

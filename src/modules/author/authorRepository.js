@@ -5,7 +5,7 @@ class AuthorRepository {
   }
 
   // mutate Obj to levelUp nested Fields Recieved From wp-Api
-  MutateAuthorObj(obj) {
+  mutateAuthorObj(obj) {
     return Object.assign({}, obj, {
       avatar1: obj.avatar_urls['24'],
       avatar2: obj.avatar_urls['48'],
@@ -16,7 +16,7 @@ class AuthorRepository {
   async getAuthors() {
     try {
       const authors = await this.wp.users()
-      const newAuthors = authors.map(item => this.MutateUserObj(item))
+      const newAuthors = authors.map(item => this.mutateAuthorObj(item))
       return newAuthors
     } catch (e) {
       return Promise.reject(e)
@@ -26,7 +26,7 @@ class AuthorRepository {
   async getAuthorById(id) {
     try {
       const author = await this.wp.users().id(id)
-      const newAuthor = await this.MutateUserObj(author)
+      const newAuthor = await this.mutateAuthorObj(author)
       return newAuthor
     } catch (e) {
       return Promise.reject(e)
@@ -36,7 +36,7 @@ class AuthorRepository {
   async getAuthorBySlug(slug) {
     try {
       const author = await this.wp.users().param('slug', slug)
-      const newAuthor = this.MutateUserObj(author[0])
+      const newAuthor = this.mutateAuthorObj(author[0])
       return newAuthor
     } catch (e) {
       return Promise.reject(e)

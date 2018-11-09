@@ -6,7 +6,7 @@ module.exports = ({ PostsRepository, TC }) => {
     TypeComposer,
     TagTC,
     CategoriesTC,
-    UserTC,
+    AuthorTC,
     InputTypeComposer,
     EnumTypeComposer,
     MediaTC
@@ -257,7 +257,7 @@ module.exports = ({ PostsRepository, TC }) => {
 
   PostsTC.addRelation(
     'authorData', {
-      resolver: () => UserTC.getResolver('getUserById'),
+      resolver: () => AuthorTC.getResolver('getAuthorById'),
       prepareArgs: {
         id: (source) => source.author
       }

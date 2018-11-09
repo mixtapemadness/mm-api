@@ -43,7 +43,7 @@ module.exports = (app) => {
     // 'review',
     // 'invitation',
     // 'payment',
-    'user',
+    'author',
     'media',
     'mailchimp',
     'tag',

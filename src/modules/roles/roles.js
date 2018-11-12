@@ -3,16 +3,16 @@ module.exports = {
   roles: {
     superAdmin: 'superAdmin',
     admin: 'admin',
-    talent: 'talent',
-    booker: 'booker',
-    bookerAgent: 'bookingAgent'
+    user: 'user',
+    artist: 'artist',
+    personal: 'personal'
   },
   listRoles: [
     'superAdmin',
     'admin',
-    'talent',
-    'booker',
-    'bookingAgent'
+    'user',
+    'artist',
+    'personal'
   ],
   permissions: {
   }

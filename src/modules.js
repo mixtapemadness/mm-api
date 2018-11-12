@@ -48,7 +48,8 @@ module.exports = (app) => {
     'mailchimp',
     'tag',
     'category',
-    'post'
+    'post',
+    'user'
   ]
 
   const mongoose = require('./db')(app.get('configuration').database.connection, 'Main')

@@ -19,11 +19,8 @@ function exit(message) {
   process.exit()
 }
 
-
 class UserCLI {
-
   constructor() {
-
     program
       .version('0.0.1')
       .description('Set user super admin')
@@ -35,7 +32,6 @@ class UserCLI {
             return error("Email is required as argument  ex : setadmin --beka@tomashvili.com")
           }
           this.setAdmin(email, isadmin)
-
       })
       program.parse(process.argv);
   }
@@ -54,7 +50,6 @@ class UserCLI {
       exit("Something bad happened or user not found :", err)
     })
   }
-
 }
 
 return new UserCLI()

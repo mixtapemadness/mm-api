@@ -43,6 +43,7 @@ module.exports = (app) => {
     // 'review',
     // 'invitation',
     // 'payment',
+    'artistDetails',
     'author',
     'media',
     'mailchimp',
@@ -69,7 +70,7 @@ module.exports = (app) => {
   controllers.forEach((ctrl) => {
     const mod = require(modulesRoot + ctrl)
     mod.initModel(global.db, mongoose)
-    mod.getGraphql({ db: global.db, TC, wp })
+    mod.getGraphql({ db: global.db, TC })
     app.map(mod.getRouteV1(wp))
   })
 

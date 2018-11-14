@@ -6,7 +6,7 @@ var rootFolder = path.resolve(__dirname, '..')
 module.exports = {
   port: 8001,
   database: {
-    connection: 'mongodb://localhost:27017/booking'
+    connection: 'mongodb://localhost:27017/mixtape'
   },
   google: {
     mapApiKey: 'AIzaSyAGZlA3uSEzLHmilBA0YHm6PTvmROLMI-M',

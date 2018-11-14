@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "mixtape-Back",
   "main": "bin/www",
+  "preferGlobal": true,
+  "bin": "./cli/migration.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development DEBUG=mixtape CONFIG=development nodemon ./bin/www",
     "start:devDocker": "NODE_ENV=development node bin/www",
@@ -18,7 +20,7 @@
     "apidoc": "apidoc -i app -o public/doc",
     "test": "NODE_ENV=test mocha --timeout 10000",
     "token": "node ./scripts/generate-user-token.js",
-    "seed:migration": "DEBUG=* node cli/migration.js",
+    "seed:migrate": "DEBUG=* node cli/migration.js migration",
     "postinstall": "node -e \"var s=['../src','../test'],d=['node_modules/app','node_modules/test'],fs=require('fs');s.forEach(function(_,i){fs.existsSync(d[i])||fs.symlinkSync(s[i],d[i],'dir')});\"",
     "agenda": "NODE_ENV=development DEBUG=lambda CONFIG=development nodemon --harmony ./worker/start.js",
     "agenda:prod": "NODE_ENV=production pm2 start ./worker/start.js --name worker_agenda"
@@ -77,6 +79,7 @@
     "moment": "^2.17.1",
     "mongoose": "4.13.12",
     "multer": "1.3.1",
+    "mysql": "^2.16.0",
     "nodemon": "1.17.5",
     "paypal-rest-sdk": "2.0.0-rc.2",
     "qr-image": "3.2.0",

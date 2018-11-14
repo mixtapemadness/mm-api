@@ -18,8 +18,8 @@ const getGraphql = ({ db, TC }) => {
 }
 
 const getCtrl = (db) => {
-  var FeedbackController = require('./artistDetailsController')
-  return new FeedbackController({db, feedbackRepository: artistDetailsRepository(db)})
+  var ArtistDetailsController = require('./artistDetailsController')
+  return new ArtistDetailsController({db, artistDetailsRepository: ArtistDetailsController(db)})
 }
 
 const getRouteV1 = (db) => {

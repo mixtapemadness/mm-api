@@ -11,7 +11,12 @@ class MediasRepository {
       title: obj.title.rendered,
       description: obj.description.rendered,
       caption: obj.caption.rendered,
-      full: obj.media_details.sizes.full.source_url,
+      full: obj.media_details &&
+      obj.media_details.sizes &&
+      obj.media_details.sizes.full &&
+      obj.media_details.sizes.full.source_url &&
+      obj.media_details.sizes.full.source_url,
+
       featured_image: obj.media_details &&
       obj.media_details.sizes &&
       obj.media_details.sizes &&

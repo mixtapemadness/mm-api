@@ -22,7 +22,12 @@ class MediasRepository {
       obj.media_details.sizes &&
       obj.media_details.sizes['featured-image'] &&
       obj.media_details.sizes['featured-image'].source_url
-      ? obj.media_details.sizes['featured-image'].source_url : ''
+      ? obj.media_details.sizes['featured-image'].source_url
+      : obj.media_details &&
+      obj.media_details.sizes &&
+      obj.media_details.sizes.full &&
+      obj.media_details.sizes.full.source_url &&
+      obj.media_details.sizes.full.source_url
     })
   }
 
@@ -37,8 +42,10 @@ class MediasRepository {
 
   async getMediaById(id) {
     try {
-      const media = await this.wp.media().id(id)
-      return this.MutateMediaObj(media)
+      if (id) {
+        const media = await this.wp.media().id(id)
+        return this.MutateMediaObj(media)
+      }
     } catch (e) {
       return Promise.reject(e)
     }

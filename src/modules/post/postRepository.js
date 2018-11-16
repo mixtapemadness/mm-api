@@ -97,6 +97,16 @@ class PostRepository {
     }
   }
 
+  async getPostsByTags({tags}) {
+    try {
+      const posts = await this.wp.posts().param('tags', tags)
+      const newPosts = posts.map(item => this.MutatePostObj(item))
+      return newPosts
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+
   async getPostsByAuthorId({ id, page, perPage }) {
     try {
       const posts = await this.wp.posts()
@@ -165,14 +175,16 @@ class PostRepository {
   async getPrevPost({date, page, perPage, filter = {}}) {
     const { categories } = filter
     try {
-      const posts = await this.wp.posts()
+      if (date) {
+        const posts = await this.wp.posts()
       .param('categories', categories)
       .after(date)
       .order('asc')
       .perPage(perPage)
       .page(page)
-      const newPost = posts.map(item => this.MutatePostObj(item))
-      return newPost
+        const newPost = posts.map(item => this.MutatePostObj(item))
+        return newPost
+      }
     } catch (e) {
       return Promise.reject(e)
     }

@@ -15,7 +15,7 @@ module.exports = ({ PostsRepository, TC }) => {
   const PostsTC = TypeComposer.create({
     name: 'PostType',
     fields: {
-      id: 'ID!',
+      id: 'ID',
       date: 'String',
       date_gmt: 'String',
       link: 'String',
@@ -159,6 +159,17 @@ module.exports = ({ PostsRepository, TC }) => {
   })
 
   PostsTC.addResolver({
+    name: 'getPostsByTags',
+    args: {
+      tags: ['ID']
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsByTags(args)
+    }
+  })
+
+  PostsTC.addResolver({
     name: 'getPostsByAuthorId',
     args: {
       id: 'ID',
@@ -278,14 +289,13 @@ module.exports = ({ PostsRepository, TC }) => {
     getPostById: PostsTC.getResolver('getPostById'),
     searchPosts: PostsTC.getResolver('searchPosts'),
     getPostBySlug: PostsTC.getResolver('getPostBySlug'),
+    getPostsByTags: PostsTC.getResolver('getPostsByTags'),
     getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId'),
     getPostsCount: PostsTC.getResolver('getPostsCount'),
     getNextPost: PostsTC.getResolver('getNextPost'),
     getPrevPost: PostsTC.getResolver('getPrevPost'),
     getNextPostByAuthorId: PostsTC.getResolver('getNextPostByAuthorId'),
     getPrevPostByAuthorId: PostsTC.getResolver('getPrevPostByAuthorId')
-
-    // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
   })
 
   TC.PostsTC = PostsTC

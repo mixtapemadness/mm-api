@@ -6,9 +6,8 @@ class PostRepository {
   constructor(wp) {
     this.wp = wp
   }
-
   trim(item) {
-    const regex = /(<([^>]+)>)/ig
+    const regex = /(<([^>]+)>)/gi
     return item.replace(regex, '')
   }
 
@@ -33,12 +32,13 @@ class PostRepository {
 
   async getPostsCount({ filter = {} }) {
     const { categories, tags, author, slug } = filter
-    const count = await this.wp.posts()
-    .param('categories', categories)
-    .param('tags', tags)
-    .param('authors', author)
-    .param('slug', slug)
-    .headers()
+    const count = await this.wp
+      .posts()
+      .param('categories', categories)
+      .param('tags', tags)
+      .param('authors', author)
+      .param('slug', slug)
+      .headers()
     return Object.assign({}, { count: count['x-wp-total'] })
   }
 
@@ -46,13 +46,16 @@ class PostRepository {
     const { categories, tags, author, slug } = filter
     const { order, orderBy } = sort
     try {
-      const posts = await this.wp.posts()
-      .param('categories', categories)
-      .param('tags', tags)
-      .param('authors', author)
-      .param('slug', slug)
-      .order(order).orderby(orderBy)
-      .perPage(perPage).page(page)
+      const posts = await this.wp
+        .posts()
+        .param('categories', categories)
+        .param('tags', tags)
+        .param('authors', author)
+        .param('slug', slug)
+        .order(order)
+        .orderby(orderBy)
+        .perPage(perPage)
+        .page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
       return Promise.reject(e)
@@ -63,13 +66,15 @@ class PostRepository {
     const { categories, tags, author, slug } = filter
     const { search } = filter
     try {
-      const posts = await this.wp.posts()
+      const posts = await this.wp
+        .posts()
         .param('categories', categories)
         .param('tags', tags)
         .param('authors', author)
         .param('slug', slug)
         .search(search)
-        .perPage(perPage).page(page)
+        .perPage(perPage)
+        .page(page)
 
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
@@ -97,7 +102,7 @@ class PostRepository {
     }
   }
 
-  async getPostsByTags({tags}) {
+  async getPostsByTags({ tags }) {
     try {
       const posts = await this.wp.posts().param('tags', tags)
       const newPosts = posts.map(item => this.MutatePostObj(item))
@@ -109,7 +114,8 @@ class PostRepository {
 
   async getPostsByAuthorId({ id, page, perPage }) {
     try {
-      const posts = await this.wp.posts()
+      const posts = await this.wp
+        .posts()
         .author(id)
         .perPage(perPage)
         .page(page)
@@ -121,11 +127,12 @@ class PostRepository {
 
   async getNextPostByAuthorId({ id, date, page, perPage }) {
     try {
-      const post = await this.wp.posts()
-      .author(id)
-      .before(date)
-      .perPage(perPage)
-      .page(page)
+      const post = await this.wp
+        .posts()
+        .author(id)
+        .before(date)
+        .perPage(perPage)
+        .page(page)
       const newPost = this.MutatePostObj(post[0])
       return newPost
     } catch (e) {
@@ -133,14 +140,15 @@ class PostRepository {
     }
   }
 
-  async getPrevPostByAuthorId({id, date, page, perPage}) {
+  async getPrevPostByAuthorId({ id, date, page, perPage }) {
     try {
-      const posts = await this.wp.posts()
-      .param('author', id)
-      .after(date)
-      .order('asc')
-      .perPage(perPage)
-      .page(page)
+      const posts = await this.wp
+        .posts()
+        .param('author', id)
+        .after(date)
+        .order('asc')
+        .perPage(perPage)
+        .page(page)
       const newPost = posts.map(item => this.MutatePostObj(item))
       return newPost
     } catch (e) {
@@ -160,11 +168,12 @@ class PostRepository {
   async getNextPost({ date, page, perPage, filter = {} }) {
     const { categories } = filter
     try {
-      const post = await this.wp.posts()
-      .param('categories', categories)
-      .before(date)
-      .perPage(perPage)
-      .page(page)
+      const post = await this.wp
+        .posts()
+        .param('categories', categories)
+        .before(date)
+        .perPage(perPage)
+        .page(page)
       const newPost = this.MutatePostObj(post[0])
       return newPost
     } catch (e) {
@@ -172,16 +181,17 @@ class PostRepository {
     }
   }
 
-  async getPrevPost({date, page, perPage, filter = {}}) {
+  async getPrevPost({ date, page, perPage, filter = {} }) {
     const { categories } = filter
     try {
       if (date) {
-        const posts = await this.wp.posts()
-      .param('categories', categories)
-      .after(date)
-      .order('asc')
-      .perPage(perPage)
-      .page(page)
+        const posts = await this.wp
+          .posts()
+          .param('categories', categories)
+          .after(date)
+          .order('asc')
+          .perPage(perPage)
+          .page(page)
         const newPost = posts.map(item => this.MutatePostObj(item))
         return newPost
       }
@@ -192,4 +202,3 @@ class PostRepository {
 }
 
 module.exports = PostRepository
-

@@ -106,8 +106,7 @@ module.exports = ({ PostsRepository, TC }) => {
 
   PostsTC.addResolver({
     name: 'getTopPosts',
-    args: {
-    },
+    args: {},
     type: [PostsTC],
     resolve: () => {
       return PostsRepository.getTopPosts()
@@ -248,41 +247,33 @@ module.exports = ({ PostsRepository, TC }) => {
   // })
 
   // Relations
-  PostsTC.addRelation(
-    'tagsData', {
-      resolver: () => TagTC.getResolver('getTagsByPostId'),
-      prepareArgs: {
-        id: (source) => source.id
-      }
+  PostsTC.addRelation('tagsData', {
+    resolver: () => TagTC.getResolver('getTagsByPostId'),
+    prepareArgs: {
+      id: source => source.id
     }
-  )
+  })
 
-  PostsTC.addRelation(
-    'categoryData', {
-      resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
-      prepareArgs: {
-        id: (source) => source.id
-      }
+  PostsTC.addRelation('categoryData', {
+    resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
+    prepareArgs: {
+      id: source => source.id
     }
-  )
+  })
 
-  PostsTC.addRelation(
-    'authorData', {
-      resolver: () => AuthorTC.getResolver('getAuthorById'),
-      prepareArgs: {
-        id: (source) => source.author
-      }
+  PostsTC.addRelation('authorData', {
+    resolver: () => AuthorTC.getResolver('getAuthorById'),
+    prepareArgs: {
+      id: source => source.author
     }
-  )
+  })
 
-  PostsTC.addRelation(
-    'mediaData', {
-      resolver: () => MediaTC.getResolver('getMediaByParent'),
-      prepareArgs: {
-        id: (source) => source.id
-      }
+  PostsTC.addRelation('mediaData', {
+    resolver: () => MediaTC.getResolver('getMediaByParent'),
+    prepareArgs: {
+      id: source => source.id
     }
-  )
+  })
 
   schemaComposer.rootQuery().addFields({
     getPosts: PostsTC.getResolver('getPosts'),

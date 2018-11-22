@@ -2,9 +2,9 @@ const debug = require('debug')('mixtape')
 const { apolloUploadExpress } = require('apollo-upload-server')
 var WPAPI = require('wpapi')
 
-module.exports = (app) => {
+module.exports = app => {
   const wp = new WPAPI({ endpoint: 'http://www.mixtapemadness.com/blog/wp-json' })
-  require('./utils/responses').forEach((response) => {
+  require('./utils/responses').forEach(response => {
     app.use(response)
   })
 
@@ -12,7 +12,7 @@ module.exports = (app) => {
    * catch error from myError or send badRequest
    */
   app.use((req, res, next) => {
-    res['catchError'] = (error) => {
+    res['catchError'] = error => {
       if (error.status) res.statusCode = error.status || 400
 
       // let option = {}
@@ -33,23 +33,7 @@ module.exports = (app) => {
     next()
   })
 
-  const controllers = [
-    // 'helpers',
-    // 'booking',
-    // 'event',
-    // 'notification',
-    // 'chat',
-    // 'file',
-    // 'review',
-    // 'invitation',
-    // 'payment',
-    'author',
-    'media',
-    'mailchimp',
-    'tag',
-    'category',
-    'post'
-  ]
+  const controllers = ['author', 'media', 'mailchimp', 'tag', 'category', 'post']
 
   const mongoose = require('./db')(app.get('configuration').database.connection, 'Main')
   global.db = { mongoose }
@@ -65,7 +49,7 @@ module.exports = (app) => {
 
   // loop through all folders in api/controllers
   const modulesRoot = './modules/'
-  controllers.forEach((ctrl) => {
+  controllers.forEach(ctrl => {
     const mod = require(modulesRoot + ctrl)
     mod.initModel(global.db, mongoose)
     mod.getGraphql({ db: global.db, TC, wp })
@@ -78,9 +62,9 @@ module.exports = (app) => {
   app.use(
     '/graphql',
     // graphqlAuth
-      // .authMiddleware({
-      //   db: global.db
-      // }),
+    // .authMiddleware({
+    //   db: global.db
+    // }),
     apolloUploadExpress(app.get('configuration').upload),
     graphqlHTTP((req, res) => ({
       schema: graphqlSchema,
@@ -89,7 +73,8 @@ module.exports = (app) => {
         user: req.user,
         headers: req.headers
       }
-    })))
+    }))
+  )
 
   app.get('/', (req, res) => {
     res.sendStatus(200)
@@ -122,7 +107,7 @@ module.exports = (app) => {
    * @param {object} message which message you want sent
    * @param {string} userId maybe user id, which receive this notification
    */
-  global.sendSocketNotificationToUser = function (message, userId) {
+  global.sendSocketNotificationToUser = function(message, userId) {
     if (global.socket) {
       socket.emit('notification', { userId, message })
     }
@@ -132,20 +117,19 @@ module.exports = (app) => {
    * @param {object} message which message you want sent
    * @param {string} userId maybe user id, which receive this notification
    */
-  global.sendSocketMessageToUser = function (toUserId, fromUserId, type, message) {
+  global.sendSocketMessageToUser = function(toUserId, fromUserId, type, message) {
     if (global.socket) {
       socket.emit('chat', { toUserId, fromUserId, type, message })
     }
   }
 
-  socket.on('connect', function () {
+  socket.on('connect', function() {
     console.log('connect to socket server')
   })
-  socket.on('event', function (data) {
+  socket.on('event', function(data) {
     console.log('event of socket server')
   })
-  socket.on('disconnect', function () {
+  socket.on('disconnect', function() {
     console.log('disconnect socket server')
   })
 }
-

@@ -4,7 +4,7 @@
   "description": "mixtape-Back",
   "main": "bin/www",
   "scripts": {
-    "start": "cross-env NODE_ENV=development DEBUG=mixtape CONFIG=development nodemon ./bin/www",
+    "start": "NODE_ENV=development DEBUG=mixtape CONFIG=development nodemon ./bin/www",
     "start:devDocker": "NODE_ENV=development node bin/www",
     "start:testing": "DEBUG=* CONFIG=testing nodemon ./bin/www",
     "pm2_test": "NODE_ENV=testing DEBUG=* CONFIG=testing pm2 start ./bin/www --name mixtape_8001",

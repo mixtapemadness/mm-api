@@ -30,16 +30,27 @@ module.exports = ({ MediaRepository, TC }) => {
       alt_text: 'String',
       media_type: 'String',
       mime_type: 'String',
-      post: 'ID'
+      post: 'ID',
+      featured_image: 'String',
+      full: 'String',
     }
   })
 
   MediaTC.addResolver({
     name: 'getMedia',
-    args: {},
+    args: { id: 'ID' },
     type: [MediaTC],
     resolve: ({ source, args }) => {
-      return MediaRepository.getMedia()
+      return MediaRepository.getMedia(args.id)
+    }
+  })
+
+  MediaTC.addResolver({
+    name: 'getMediaById',
+    args: { id: 'ID' },
+    type: MediaTC,
+    resolve: ({ args }) => {
+      return MediaRepository.getMediaById(args.id)
     }
   })
 
@@ -54,6 +65,7 @@ module.exports = ({ MediaRepository, TC }) => {
 
   schemaComposer.rootQuery().addFields({
     getMedia: MediaTC.getResolver('getMedia'),
+    getMediaById: MediaTC.getResolver('getMediaById'),
     getMediaByParent: MediaTC.getResolver('getMediaByParent')
   })
 

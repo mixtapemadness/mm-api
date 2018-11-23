@@ -19,11 +19,8 @@ function exit(message) {
   process.exit()
 }
 
-
 class UserCLI {
-
   constructor() {
-
     program
       .version('0.0.1')
       .description('Set user super admin')

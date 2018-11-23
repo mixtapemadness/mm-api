@@ -8,7 +8,15 @@ class CategoriesRepository {
     try {
       return this.wp.categories()
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
+    }
+  }
+
+  getCategoryByID(id) {
+    try {
+      return this.wp.categories().id(id)
+    } catch (e) {
+      return Promise.reject(e)
     }
   }
 
@@ -16,7 +24,7 @@ class CategoriesRepository {
     try {
       return this.wp.categories().param('post', id)
     } catch (e) {
-      console.log('e', e)
+      return Promise.reject(e)
     }
   }
 

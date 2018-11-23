@@ -4,7 +4,7 @@ module.exports = {
   HTTP_HOST: 'https://apidev.mixtape.com', // this is api endpoint full url
   database: {
     // connection: 'mongodb://vobi:bookingbrav01!@mixtape.com/booking'
-    connection : 'mongodb://mixtape:V0bi!qwerty1$@db.vobi.io/booking'
+    connection: 'mongodb://mixtape:V0bi!qwerty1$@db.vobi.io/booking'
   },
   mailgun: {
     apiKey: 'key-',
@@ -14,6 +14,6 @@ module.exports = {
     frontendUrl: 'https://test.mixtape.com'
   },
   systemEmail: 'service@mixtape.com',
-  front_url: 'https://test.mixtape.com',
+  front_url: 'https://vobi.mixtape.com',
   back_url: 'https://apidev.mixtape.com'
 }

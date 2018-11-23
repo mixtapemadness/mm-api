@@ -9,11 +9,19 @@ var app = express()
 global.app = app
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Origin', req.headers.origin)
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-  res.header('Access-Control-Allow-Headers',
-    'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, authorization')
+  // res.header('Access-Control-Allow-Credentials', true)
+  // res.header('Access-Control-Allow-Origin', req.headers.origin)
+  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  // res.header('Access-Control-Allow-Headers',
+  //   'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept')
+  // res.header('Access-Control-Allow-Headers', '*')
+
+  // CORS headers
+  res.header('Access-Control-Allow-Origin', '*') // restrict it to the required domain
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  // Set custom headers for CORS
+  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Custom-Header, X-Requested-With, X-HTTP-Method-Override, Authorization')
+
   if (req.method === 'OPTIONS') {
     res.sendStatus(200)
   } else {
@@ -27,7 +35,7 @@ app.use(bodyParser.json({ limit: '10mb' }))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '/app/views'))
+app.set('views', path.join(__dirname, '/src/views'))
 
 // app.use(bodyParser.json({limit: '10mb'}))
 // app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))

@@ -6,18 +6,19 @@ module.exports = ({ PostsRepository, TC }) => {
     TypeComposer,
     TagTC,
     CategoriesTC,
+    AuthorTC,
     InputTypeComposer,
-    EnumTypeComposer
+    EnumTypeComposer,
+    MediaTC
   } = TC
 
   const PostsTC = TypeComposer.create({
     name: 'PostType',
     fields: {
-      id: 'ID!',
+      id: 'ID',
       date: 'String',
       date_gmt: 'String',
       link: 'String',
-      name: 'String',
       slug: 'String',
       guid: 'ID',
       modified: 'String',
@@ -27,23 +28,23 @@ module.exports = ({ PostsRepository, TC }) => {
       title: 'String',
       content: 'String',
       excerpt: 'String',
-      author: 'Int',
-      featured_media: 'Int',
       comment_status: 'String',
       ping_status: 'String',
       sticky: 'Boolean',
       template: 'String',
       format: 'String',
-      meta: ['String']
+      meta: ['String'],
+      featured_media: 'ID',
+      author: 'ID',
+      categories: ['ID'],
+      tags: ['ID']
     }
   })
 
-  const filterPostInput = InputTypeComposer.create({
-    name: 'filterPostInput',
+  const CountTC = TypeComposer.create({
+    name: 'CountType',
     fields: {
-      categories: ['ID'],
-      tags: ['ID'],
-      author: ['ID']
+      count: 'String'
     }
   })
 
@@ -63,6 +64,32 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
+  const FilterPostCategoryInput = EnumTypeComposer.create({
+    name: 'filterPostCategoryInput',
+    values: {
+      VIDEOS: { value: 15 },
+      AUDIO: { value: 2301 },
+      NEWS: { value: 238 },
+      ARTICLES: { value: 3 },
+      UNCATEGORIZED: { value: 1 },
+      EVENTS: { value: 247 },
+      INTERVIEWS: { value: 8 },
+      REVIEWS: { value: 237 },
+      DOCUMENTARY: { value: 2106 }
+    }
+  })
+
+  const filterPostInput = InputTypeComposer.create({
+    name: 'filterPostInput',
+    fields: {
+      categories: [FilterPostCategoryInput],
+      tags: ['ID'],
+      author: ['ID'],
+      search: 'String',
+      slug: 'String'
+    }
+  })
+
   PostsTC.addResolver({
     name: 'getPosts',
     args: {
@@ -78,11 +105,135 @@ module.exports = ({ PostsRepository, TC }) => {
   })
 
   PostsTC.addResolver({
+    name: 'getTopPosts',
+    args: {},
+    type: [PostsTC],
+    resolve: () => {
+      return PostsRepository.getTopPosts()
+    }
+  })
+
+  PostsTC.addResolver({
     name: 'getPostById',
     args: { id: 'ID' },
     type: PostsTC,
     resolve: ({ args }) => {
       return PostsRepository.getPostById(args.id)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'searchPosts',
+    args: {
+      filter: filterPostInput,
+      perPage: 'ID',
+      page: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.searchPosts(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPostsCount',
+    args: {
+      filter: filterPostInput
+    },
+    type: CountTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsCount(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPostBySlug',
+    args: {
+      slug: 'String'
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getPostBySlug(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPostsByTags',
+    args: {
+      tags: ['ID']
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsByTags(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPostsByAuthorId',
+    args: {
+      id: 'ID',
+      perPage: 'ID',
+      page: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPostsByAuthorId(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getNextPostByAuthorId',
+    args: {
+      id: 'ID',
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID'
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getNextPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPrevPostByAuthorId',
+    args: {
+      id: 'ID',
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID'
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPrevPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getNextPost',
+    args: {
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID',
+      filter: filterPostInput
+    },
+    type: PostsTC,
+    resolve: ({ args }) => {
+      return PostsRepository.getNextPost(args)
+    }
+  })
+
+  PostsTC.addResolver({
+    name: 'getPrevPost',
+    args: {
+      date: 'String',
+      page: 'ID',
+      perPage: 'ID',
+      filter: filterPostInput
+    },
+    type: [PostsTC],
+    resolve: ({ args }) => {
+      return PostsRepository.getPrevPost(args)
     }
   })
 
@@ -96,28 +247,46 @@ module.exports = ({ PostsRepository, TC }) => {
   // })
 
   // Relations
-  PostsTC.addRelation(
-    'tags', {
-      resolver: () => TagTC.getResolver('getTagsByPostId'),
-      prepareArgs: {
-        id: (source) => source.id
-      }
+  PostsTC.addRelation('tagsData', {
+    resolver: () => TagTC.getResolver('getTagsByPostId'),
+    prepareArgs: {
+      id: source => source.id
     }
-  )
+  })
 
-  PostsTC.addRelation(
-    'Category', {
-      resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
-      prepareArgs: {
-        id: (source) => source.id
-      }
+  PostsTC.addRelation('categoryData', {
+    resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
+    prepareArgs: {
+      id: source => source.id
     }
-  )
+  })
+
+  PostsTC.addRelation('authorData', {
+    resolver: () => AuthorTC.getResolver('getAuthorById'),
+    prepareArgs: {
+      id: source => source.author
+    }
+  })
+
+  PostsTC.addRelation('mediaData', {
+    resolver: () => MediaTC.getResolver('getMediaByParent'),
+    prepareArgs: {
+      id: source => source.id
+    }
+  })
 
   schemaComposer.rootQuery().addFields({
     getPosts: PostsTC.getResolver('getPosts'),
-    getPostById: PostsTC.getResolver('getPostById')
-    // getPostsByCategoriesId: PostsTC.getResolver('getPostsByCategoriesId')
+    getPostById: PostsTC.getResolver('getPostById'),
+    searchPosts: PostsTC.getResolver('searchPosts'),
+    getPostBySlug: PostsTC.getResolver('getPostBySlug'),
+    getPostsByTags: PostsTC.getResolver('getPostsByTags'),
+    getPostsByAuthorId: PostsTC.getResolver('getPostsByAuthorId'),
+    getPostsCount: PostsTC.getResolver('getPostsCount'),
+    getNextPost: PostsTC.getResolver('getNextPost'),
+    getPrevPost: PostsTC.getResolver('getPrevPost'),
+    getNextPostByAuthorId: PostsTC.getResolver('getNextPostByAuthorId'),
+    getPrevPostByAuthorId: PostsTC.getResolver('getPrevPostByAuthorId')
   })
 
   TC.PostsTC = PostsTC

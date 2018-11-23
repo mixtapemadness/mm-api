@@ -31,6 +31,15 @@ module.exports = ({ CategoryRepository, TC }) => {
   })
 
   CategoryTC.addResolver({
+    name: 'getCategoryByID',
+    args: { id: 'ID' },
+    type: CategoryTC,
+    resolve: ({ source, args }) => {
+      return CategoryRepository.getCategoryByID(args.id)
+    }
+  })
+
+  CategoryTC.addResolver({
     name: 'getCategoriesByPostId',
     args: { id: 'ID' },
     type: [CategoryTC],
@@ -41,6 +50,7 @@ module.exports = ({ CategoryRepository, TC }) => {
 
   schemaComposer.rootQuery().addFields({
     getCategories: CategoryTC.getResolver('getCategories'),
+    getCategoryByID: CategoryTC.getResolver('getCategoryByID'),
     getCategoriesByPostId: CategoryTC.getResolver('getCategoriesByPostId')
   })
 

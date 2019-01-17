@@ -64,25 +64,25 @@ module.exports = ({ PostsRepository, TC }) => {
     }
   })
 
-  const FilterPostCategoryInput = EnumTypeComposer.create({
-    name: 'filterPostCategoryInput',
-    values: {
-      VIDEOS: { value: 15 },
-      AUDIO: { value: 2301 },
-      NEWS: { value: 238 },
-      ARTICLES: { value: 3 },
-      UNCATEGORIZED: { value: 1 },
-      EVENTS: { value: 247 },
-      INTERVIEWS: { value: 8 },
-      REVIEWS: { value: 237 },
-      DOCUMENTARY: { value: 2106 }
-    }
-  })
+  // const FilterPostCategoryInput = EnumTypeComposer.create({
+  //   name: 'filterPostCategoryInput',
+  //   values: {
+  //     VIDEOS: { value: 15 },
+  //     AUDIO: { value: 2301 },
+  //     NEWS: { value: 238 },
+  //     ARTICLES: { value: 3 },
+  //     UNCATEGORIZED: { value: 1 },
+  //     EVENTS: { value: 247 },
+  //     INTERVIEWS: { value: 8 },
+  //     REVIEWS: { value: 237 },
+  //     DOCUMENTARY: { value: 2106 }
+  //   }
+  // })
 
   const filterPostInput = InputTypeComposer.create({
     name: 'filterPostInput',
     fields: {
-      categories: [FilterPostCategoryInput],
+      categories: ['ID'],
       tags: ['ID'],
       author: ['ID'],
       search: 'String',

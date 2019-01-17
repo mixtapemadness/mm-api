@@ -13,10 +13,10 @@ class PostRepository {
 
   MutatePostObj(obj) {
     return Object.assign({}, obj, {
-      guid: obj.guid.rendered,
-      title: obj.title.rendered,
-      content: obj.content.rendered,
-      excerpt: obj.excerpt.rendered
+      guid: obj.guid.rendered ? obj.guid.rendered : '',
+      title: obj.title.rendered ? obj.title.rendered : '',
+      content: obj.content.rendered ? obj.content.rendered : '',
+      excerpt: obj.excerpt.rendered ? obj.excerpt.rendered : ''
     })
   }
 

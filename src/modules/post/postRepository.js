@@ -115,10 +115,10 @@ class PostRepository {
   async getPostsByAuthorId({ id, page, perPage }) {
     try {
       const posts = await this.wp
-        .posts()
-        .author(id)
-        .perPage(perPage)
-        .page(page)
+      .posts()
+      .param('author', id)
+      .perPage(perPage)
+      .page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
       return Promise.reject(e)
@@ -129,7 +129,7 @@ class PostRepository {
     try {
       const post = await this.wp
         .posts()
-        .author(id)
+        .param('author', id)
         .before(date)
         .perPage(perPage)
         .page(page)

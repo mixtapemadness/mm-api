@@ -44,7 +44,7 @@ class MediasRepository {
 
   async getMediaById(id) {
     try {
-      if (id) {
+      if (id && id > -1) {
         const media = await this.wp.media().id(id)
         return this.MutateMediaObj(media)
       }

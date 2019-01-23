@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = ({ PostsRepository, TC }) => {
   const {
@@ -10,7 +10,7 @@ module.exports = ({ PostsRepository, TC }) => {
     InputTypeComposer,
     EnumTypeComposer,
     MediaTC
-  } = TC
+  } = TC;
 
   const PostsTC = TypeComposer.create({
     name: 'PostType',
@@ -39,14 +39,14 @@ module.exports = ({ PostsRepository, TC }) => {
       categories: ['ID'],
       tags: ['ID']
     }
-  })
+  });
 
   const CountTC = TypeComposer.create({
     name: 'CountType',
     fields: {
       count: 'String'
     }
-  })
+  });
 
   const sortPostInput = EnumTypeComposer.create({
     name: 'sortPostInput',
@@ -62,7 +62,7 @@ module.exports = ({ PostsRepository, TC }) => {
       // FEATURED_ASC: { value: { order: 'asc', orderBy: 'featured_media' } },
       // FEATURED_DESC: { value: { order: 'desc', orderBy: 'featured_media' } }
     }
-  })
+  });
 
   const FilterPostCategoryInput = EnumTypeComposer.create({
     name: 'filterPostCategoryInput',
@@ -81,7 +81,7 @@ module.exports = ({ PostsRepository, TC }) => {
       COMMUNITY: { value: 2252 },
       COOR: { value: 531 }
     }
-  })
+  });
 
   const filterPostInput = InputTypeComposer.create({
     name: 'filterPostInput',
@@ -92,7 +92,7 @@ module.exports = ({ PostsRepository, TC }) => {
       search: 'String',
       slug: 'String'
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPosts',
@@ -104,27 +104,27 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ source, args }) => {
-      return PostsRepository.getPosts(args)
+      return PostsRepository.getPosts(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getTopPosts',
     args: {},
     type: [PostsTC],
     resolve: () => {
-      return PostsRepository.getTopPosts()
+      return PostsRepository.getTopPosts();
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPostById',
     args: { id: 'ID' },
     type: PostsTC,
     resolve: ({ args }) => {
-      return PostsRepository.getPostById(args.id)
+      return PostsRepository.getPostById(args.id);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'searchPosts',
@@ -135,9 +135,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.searchPosts(args)
+      return PostsRepository.searchPosts(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPostsCount',
@@ -146,9 +146,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: CountTC,
     resolve: ({ args }) => {
-      return PostsRepository.getPostsCount(args)
+      return PostsRepository.getPostsCount(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPostBySlug',
@@ -157,9 +157,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: PostsTC,
     resolve: ({ args }) => {
-      return PostsRepository.getPostBySlug(args)
+      return PostsRepository.getPostBySlug(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPostsByTags',
@@ -168,9 +168,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.getPostsByTags(args)
+      return PostsRepository.getPostsByTags(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPostsByAuthorId',
@@ -181,9 +181,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.getPostsByAuthorId(args)
+      return PostsRepository.getPostsByAuthorId(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getNextPostByAuthorId',
@@ -195,9 +195,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: PostsTC,
     resolve: ({ args }) => {
-      return PostsRepository.getNextPost(args)
+      return PostsRepository.getNextPost(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPrevPostByAuthorId',
@@ -209,9 +209,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.getPrevPost(args)
+      return PostsRepository.getPrevPost(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getNextPost',
@@ -223,9 +223,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: PostsTC,
     resolve: ({ args }) => {
-      return PostsRepository.getNextPost(args)
+      return PostsRepository.getNextPost(args);
     }
-  })
+  });
 
   PostsTC.addResolver({
     name: 'getPrevPost',
@@ -237,9 +237,9 @@ module.exports = ({ PostsRepository, TC }) => {
     },
     type: [PostsTC],
     resolve: ({ args }) => {
-      return PostsRepository.getPrevPost(args)
+      return PostsRepository.getPrevPost(args);
     }
-  })
+  });
 
   // PostsTC.addResolver({
   //   name: 'getPostsByCategoriesId',
@@ -256,28 +256,28 @@ module.exports = ({ PostsRepository, TC }) => {
     prepareArgs: {
       id: source => source.id
     }
-  })
+  });
 
   PostsTC.addRelation('categoryData', {
     resolver: () => CategoriesTC.getResolver('getCategoriesByPostId'),
     prepareArgs: {
       id: source => source.id
     }
-  })
+  });
 
   PostsTC.addRelation('authorData', {
     resolver: () => AuthorTC.getResolver('getAuthorById'),
     prepareArgs: {
       id: source => source.author
     }
-  })
+  });
 
   PostsTC.addRelation('mediaData', {
     resolver: () => MediaTC.getResolver('getMediaByParent'),
     prepareArgs: {
       id: source => source.id
     }
-  })
+  });
 
   schemaComposer.rootQuery().addFields({
     getPosts: PostsTC.getResolver('getPosts'),
@@ -291,9 +291,9 @@ module.exports = ({ PostsRepository, TC }) => {
     getPrevPost: PostsTC.getResolver('getPrevPost'),
     getNextPostByAuthorId: PostsTC.getResolver('getNextPostByAuthorId'),
     getPrevPostByAuthorId: PostsTC.getResolver('getPrevPostByAuthorId')
-  })
+  });
 
-  TC.PostsTC = PostsTC
+  TC.PostsTC = PostsTC;
 
-  return PostsTC
-}
+  return PostsTC;
+};

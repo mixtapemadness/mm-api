@@ -13,10 +13,10 @@ class PostRepository {
 
   MutatePostObj(obj) {
     return Object.assign({}, obj, {
-      guid: obj.guid.rendered,
-      title: obj.title.rendered,
-      content: obj.content.rendered,
-      excerpt: obj.excerpt.rendered
+      guid: obj.guid.rendered ? obj.guid.rendered : '',
+      title: obj.title.rendered ? obj.title.rendered : '',
+      content: obj.content.rendered ? obj.content.rendered : '',
+      excerpt: obj.excerpt.rendered ? obj.excerpt.rendered : ''
     })
   }
 
@@ -115,10 +115,10 @@ class PostRepository {
   async getPostsByAuthorId({ id, page, perPage }) {
     try {
       const posts = await this.wp
-        .posts()
-        .author(id)
-        .perPage(perPage)
-        .page(page)
+      .posts()
+      .param('author', id)
+      .perPage(perPage)
+      .page(page)
       return posts.map(item => this.MutatePostObj(item))
     } catch (e) {
       return Promise.reject(e)
@@ -129,7 +129,7 @@ class PostRepository {
     try {
       const post = await this.wp
         .posts()
-        .author(id)
+        .param('author', id)
         .before(date)
         .perPage(perPage)
         .page(page)

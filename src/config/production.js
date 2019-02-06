@@ -13,13 +13,13 @@ module.exports = {
   },
   mailgun: {
     apiKey: 'key-',
-    domainForMailgun: 'mixtape.com',
-    defaultFrom: 'service@mixtape.com',
+    domainForMailgun: 'mixtapemadness.com',
+    defaultFrom: 'info@mixtapemadness.com',
     domainInTemplate: '',
     frontendUrl: ''
   },
-  systemEmail: 'service@mixtape.com',
-  front_url: 'https://mixtape.com',
+  systemEmail: 'info@mixtapemadness.com',
+  front_url: 'https://mixtapemadness.com',
   back_url: 'https://api.mixtape.com'
 }
 

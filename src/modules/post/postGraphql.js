@@ -79,6 +79,10 @@ module.exports = ({ PostsRepository, TC }) => {
       MADABOUTBARS: { value: 3208 },
       COMPETITION: { value: 3194 },
       COMMUNITY: { value: 2252 },
+      NEXTUP: { value: 5699 },
+      NEXTTOPIC: { value: 5698 },
+      PERFORMANCE: { value: 2313 },
+      ONETAKE: { value: 5700 },
       COOR: { value: 531 }
     }
   });

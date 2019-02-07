@@ -6,16 +6,6 @@ class MediasRepository {
 
   // mutate Obj to levelUp nested Fields Recieved From wp-Api
   MutateMediaObj(obj) {
-    let medium_large = null
-    const { media_details } = obj
-
-    if (media_details && media_details.sizes) {
-      if (media_details.sizes.medium_large) {
-        medium_large = media_details.sizes.medium_large.source_url
-      } else if (media_details.sizes.medium) {
-        medium_large = media_details.sizes.medium.source_url
-      }
-    }
     return Object.assign({}, obj, {
       guid: obj && obj.guid && obj.guid.rendered && obj.guid.rendered,
       title: obj.title.rendered,
@@ -54,7 +44,18 @@ class MediasRepository {
           obj.media_details.sizes.full.source_url &&
           obj.media_details.sizes.full.source_url,
 
-      medium_large,
+      medium_large:
+          obj.media_details &&
+          obj.media_details.sizes &&
+          obj.media_details.sizes.medium_large &&
+          obj.media_details.sizes.medium_large.source_url &&
+          obj.media_details.sizes.medium_large.source_url
+            ? obj.media_details.sizes.medium_large.source_url
+            : obj.media_details &&
+            obj.media_details.sizes &&
+            obj.media_details.sizes.medium &&
+            obj.media_details.sizes.medium.source_url &&
+            obj.media_details.sizes.medium.source_url,
 
       thumbnail:
         obj.media_details &&

@@ -102,9 +102,11 @@ class PostRepository {
     }
   }
 
-  async getPostsByTags({ tags }) {
+  async getPostsByTags({tags, perPage, categories}) {
     try {
-      const posts = await this.wp.posts().param('tags', tags)
+      const posts = await this.wp.posts()
+        .param('tags', tags)
+        .perPage(perPage)
       const newPosts = posts.map(item => this.MutatePostObj(item))
       return newPosts
     } catch (e) {

@@ -77,8 +77,13 @@ module.exports = ({ PostsRepository, TC }) => {
       REVIEWS: { value: 237 },
       DOCUMENTARY: { value: 2106 },
       MADABOUTBARS: { value: 3208 },
+      MADABOUTMIXTAPES: { value: 2222 },
       COMPETITION: { value: 3194 },
       COMMUNITY: { value: 2252 },
+      NEXTUP: { value: 5699 },
+      NEXTTOPIC: { value: 5698 },
+      PERFORMANCE: { value: 2313 },
+      ONETAKE: { value: 5700 },
       COOR: { value: 531 }
     }
   });
@@ -164,7 +169,8 @@ module.exports = ({ PostsRepository, TC }) => {
   PostsTC.addResolver({
     name: 'getPostsByTags',
     args: {
-      tags: ['ID']
+      tags: ['ID'],
+      perPage: 'Int'
     },
     type: [PostsTC],
     resolve: ({ args }) => {

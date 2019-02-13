@@ -32,7 +32,11 @@ module.exports = ({ MediaRepository, TC }) => {
       mime_type: 'String',
       post: 'ID',
       featured_image: 'String',
-      full: 'String'
+      full: 'String',
+      medium: 'String',
+      medium_large: 'String',
+      large: 'String',
+      thumbnail: 'String'
     }
   })
 

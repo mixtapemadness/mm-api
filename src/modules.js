@@ -3,7 +3,7 @@ const { apolloUploadExpress } = require('apollo-upload-server')
 var WPAPI = require('wpapi')
 
 module.exports = app => {
-  const wp = new WPAPI({ endpoint: 'http://www.mixtapemadness.com/blog/wp-json' })
+  const wp = new WPAPI({ endpoint: 'https://www.mixtapemadness.com/wordpress/wp-json' })
   require('./utils/responses').forEach(response => {
     app.use(response)
   })

@@ -1,6 +1,6 @@
 # Mixtape Madness Backend
 
-Back-end API for www.mixtapemadness.com.
+NodeJS Back-end API for www.mixtapemadness.com.
 
 ## Current Version
 1
@@ -40,9 +40,6 @@ $ yarn pm2_prod
 
 ## Built With
 
+* [NodeJS](https://nodejs.org/en/)
 * [GraphyQL](https://graphql.org/) - Query language for APIs.
-* [Apollo](https://www.apollographql.com/) - Middleware to connect with GraphQL to build UI apps.
-* [Sass](https://sass-lang.com/) - CSS preprocessor scripting language.
-* [Styled Component](https://www.styled-components.com/).
-* [MM API](https://github.com/mixtapemadness/mm-api) - The backend api this project is based off.
-
+* [Express](https://expressjs.com/) - Node web application framework.

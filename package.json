@@ -62,7 +62,6 @@
     "graphql-compose-connection": "3.0.1",
     "graphql-compose-mongoose": "4.0.0",
     "graphql-compose-pagination": "3.0.1",
-    "handlebars": "^4.0.6",
     "helmet": "^3.4.0",
     "html-pdf": "^2.1.0",
     "inquirer": "^4.0.1",

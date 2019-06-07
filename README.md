@@ -28,7 +28,7 @@ Assuming all dependencies downloaded okay, run the following script and the fron
 ```
 $ yarn run start:local
 ```
-If its all good, check http://localhost:9000
+If its all good, check http://localhost:8001
 
 ### Production
 

@@ -31,6 +31,7 @@
       "never"
     ],
     "no-underscore-dangle": 0,
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    "camelcase": "off"
   }
 }

@@ -1,6 +1,6 @@
 'use strict'
 class MediasRepository {
-  constructor(wp) {
+  constructor (wp) {
     this.wp = wp
   }
 
@@ -94,7 +94,7 @@ class MediasRepository {
         return this.MutateMediaObj(media)
       }
     } catch (e) {
-      return Promise.reject(e)
+      return null
     }
   }
 

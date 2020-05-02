@@ -1,3 +1,0 @@
-<mj-column padding="0" width="40%">
-  <mj-image padding-right="0" align="left" height="77.65px" width="79.3px" alt="img" src="{{{avatarUrl sender.avatar}}}"></mj-image>
-</mj-column>

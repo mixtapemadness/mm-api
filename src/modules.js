@@ -3,7 +3,7 @@ const { apolloUploadExpress } = require('apollo-upload-server')
 var WPAPI = require('wpapi')
 
 module.exports = app => {
-  const wp = new WPAPI({ endpoint: 'https://www.mixtapemadness.com/wordpress/wp-json' })
+  const wp = new WPAPI({ endpoint: 'https://www.mixtapemadness.com/wp-json' })
   require('./utils/responses').forEach(response => {
     app.use(response)
   })
@@ -100,36 +100,4 @@ module.exports = app => {
   })
 
   var config = require('app/config')
-//   var socket = require('socket.io-client')(config.socket.server)
-//   global.socket = socket
-//   /**
-//    * Send notification to online user
-//    * @param {object} message which message you want sent
-//    * @param {string} userId maybe user id, which receive this notification
-//    */
-//   global.sendSocketNotificationToUser = function(message, userId) {
-//     if (global.socket) {
-//       socket.emit('notification', { userId, message })
-//     }
-//   }
-//   /**
-//    * Send message to online user
-//    * @param {object} message which message you want sent
-//    * @param {string} userId maybe user id, which receive this notification
-//    */
-//   global.sendSocketMessageToUser = function(toUserId, fromUserId, type, message) {
-//     if (global.socket) {
-//       socket.emit('chat', { toUserId, fromUserId, type, message })
-//     }
-//   }
-
-//   socket.on('connect', function() {
-//     console.log('connect to socket server')
-//   })
-//   socket.on('event', function(data) {
-//     console.log('event of socket server')
-//   })
-//   socket.on('disconnect', function() {
-//     console.log('disconnect socket server')
-//   })
 }

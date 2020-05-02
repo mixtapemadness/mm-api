@@ -1,4 +1,0 @@
-<mj-column padding="0" width="60%">
-  <mj-text align="left" padding-left="0" padding-top="19px" color="#0A9A43" font-size="18px" font-weight="600" line-height="22px">{{capitalize sender.fullName}}</mj-text>
-  <mj-text align="left" padding-left="0" padding-top="0" color="#302F31" font-size="16px" line-height="20px">{{formatDate booking.modifiedOn 'hh:mm A, DD MMM YYYY'}}</mj-text>
-</mj-column>

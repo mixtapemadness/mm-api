@@ -38,7 +38,7 @@
     "@sendgrid/mail": "^6.1.4",
     "agenda": "2.0.1",
     "apollo-upload-server": "5.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.4.7",
     "body-parser": "^1.18.3",

@@ -63,7 +63,7 @@
     "graphql-compose-mongoose": "4.0.0",
     "graphql-compose-pagination": "3.0.1",
     "helmet": "^3.4.0",
-    "html-pdf": "^2.1.0",
+    "html-pdf": "^3.0.1",
     "inquirer": "^4.0.1",
     "json2xls": "^0.1.2",
     "jsonwebtoken": "^8.4.0",
